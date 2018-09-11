@@ -1,4 +1,4 @@
-// Description
+// Description:
 // Given a complete binary tree, count the number of nodes.
 // Note:
 // Definition of a complete binary tree from Wikipedia:
