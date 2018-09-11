@@ -8,6 +8,8 @@
         "iterator": "cpp",
         "string": "cpp",
         "string_view": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "__locale": "cpp",
+        "__string": "cpp"
     }
 }
