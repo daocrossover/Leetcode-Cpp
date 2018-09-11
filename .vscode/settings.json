@@ -3,6 +3,11 @@
     "files.associations": {
         "__config": "cpp",
         "__nullptr": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "bitset": "cpp",
+        "iterator": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "vector": "cpp"
     }
 }
