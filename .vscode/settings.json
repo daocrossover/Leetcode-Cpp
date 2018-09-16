@@ -36,6 +36,8 @@
         "stack": "cpp",
         "unordered_map": "cpp",
         "iosfwd": "cpp",
-        "__tuple": "cpp"
+        "__tuple": "cpp",
+        "sstream": "cpp",
+        "unordered_set": "cpp"
     }
 }
