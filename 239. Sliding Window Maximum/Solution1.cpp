@@ -21,6 +21,10 @@
 // Follow up:
 // Could you solve it in linear time?
 
+// multiset solution: the idea is from max-heap(size of k)
+// but priority queue in C++ can't delete an element directly, so use multiset
+// time comlexity: O((n-k+1)*logk), space comlexity: O(k)
+
 #include<set>
 #include<vector>
 using namespace std;
@@ -28,19 +32,19 @@ using namespace std;
 class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-        vector<int> res;
-        multiset<int> window;
-        for (int i = 0; i < nums.size(); ++i) {
-            window.insert(nums[i]);
-            if (i >= k - 1) {
-                multiset<int>::iterator it = window.end();
-                --it;
-                res.push_back(*it);
-            }
-            if (window.size() == k) {
-                multiset<int>::iterator it = window.find(nums[i - k + 1]);
-                window.erase(it);
-            }
+        if (nums.empty()) return {};
+        vector<int> res(nums.size() - k + 1);
+        // construct heap of size k
+        multiset<int> window(nums.begin(), nums.begin() + k);
+        res[0] = *window.rbegin();
+        for (int i = 1; i < nums.size() - k + 1; ++i) {
+            // delete the element out of window
+            multiset<int>::iterator it = window.find(nums[i-1]);
+            window.erase(it);
+            // add right side element
+            window.insert(nums[i-1+k]);
+            // push the max element in heap into res
+            res[i] = *window.rbegin();
         }
         return res;
     }
