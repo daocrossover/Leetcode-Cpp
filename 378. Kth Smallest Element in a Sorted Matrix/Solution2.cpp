@@ -1,4 +1,7 @@
-// Binary Search
+// Binary Search Solution:
+// The left-top element is the smallest and the right-down element is the largest
+// Calculate the mid = average of them, then find the number of the elements which is <= mid
+// Find from the left-bottom using the property of ascending order in the column
 
 #include<vector>
 using namespace std;
@@ -20,6 +23,7 @@ public:
         int n = matrix.size(), i = n - 1, j = 0, res = 0;
         while (i >= 0 && j < n) {
             if (matrix[i][j] <= target) {
+                // the element above matrix[i][j] also <= target 
                 res += i + 1;
                 ++j;
             } else {

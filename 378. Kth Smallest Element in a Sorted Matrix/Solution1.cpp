@@ -15,8 +15,12 @@
 // Note: 
 // You may assume k is always valid, 1 ≤ k ≤ n^2.
 
-// priority queue
-
+// Priority Queue Solution:
+// build a min-heap of elements from the first row
+// Do the following operations k-1 times:
+// 1. pop an element t from the heap
+// 2. push the next element of t in the same column to the heap
+// So we need to record the coordinate x, y and val(using tuple)
 #include<vector>
 #include<queue>
 #include<tuple>
