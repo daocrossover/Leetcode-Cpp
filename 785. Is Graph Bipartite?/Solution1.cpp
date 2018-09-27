@@ -36,6 +36,7 @@
 // The graph is undirected: if any element j is in graph[i], then i will be in graph[j].
 
 // BFS Solution:
+// color nodes blue or red
 
 #include<vector>
 #include<queue>
