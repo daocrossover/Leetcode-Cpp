@@ -38,7 +38,10 @@ public:
     bool check(TreeNode* node1, TreeNode* node2) {
         if (!node1 && !node2) return true;
         if (!node1 || !node2) return false;
+        // whether the left child is the same as the right child
         if (node1->val != node2->val) return false;
+        // whether the left child of the left child is the same as the right child of the right child
+        // whether the right child of the left child is the same as the left child of the right child
         return check(node1->left, node2->right) && check(node1->right, node2->left);
     }
 };
