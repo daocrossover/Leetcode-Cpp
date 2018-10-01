@@ -41,7 +41,7 @@
 // A solution using O(n) space is pretty straight forward.
 // Could you devise a constant space solution?
 
-// in-order traversal solution:
+// In-order Traversal Solution:
 
 #include<algorithm>
 using namespace std;
@@ -61,20 +61,27 @@ public:
         first = nullptr;
         second = nullptr;
         prev = nullptr;
-        dfs(root);
+        // In order traversal to find the two elements
+        inorderTraversal(root);
         swap(first->val, second->val);
     }
     
-    void dfs(TreeNode* root) {
+    void inorderTraversal(TreeNode* root) {
         if (root == nullptr) return;
-        dfs(root->left);
+        inorderTraversal(root->left);
+
+        /* Start of "do some business" */
+        // If first element has not been found, assign it to prevElement
         if (first == nullptr && prev != nullptr && prev->val >= root->val) {
             first = prev;
         }
+        // If first element is found, assign the second element to the root
         if (first != nullptr && prev->val >= root->val) {
             second = root;
         }
         prev = root;
-        dfs(root->right);
+        /* End of "do some business" */
+
+        inorderTraversal(root->right);
     }
 };
