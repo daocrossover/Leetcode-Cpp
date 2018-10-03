@@ -33,13 +33,15 @@ class Solution {
     vector<vector<int>> dir;
 public:
     int longestIncreasingPath(vector<vector<int>>& matrix) {
-        if (matrix.size() == 0) return 0;
+        if (matrix.size() == 0 || matrix[0].size() == 0) return 0;
         int m = matrix.size(), n = matrix[0].size();
         dir = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        // The key is to cache the distance because it's highly possible to revisit a cell
         vector<vector<int>> cache(m, vector<int>(n));
         int maxLen = 1;
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
+                // Do DFS from every cell
                 int len = dfs(matrix, cache, i, j, m, n);
                 maxLen = max(maxLen, len);
             }
@@ -51,6 +53,7 @@ public:
         if (cache[i][j] != 0) return cache[i][j];
         int maxLen = 1;
         for (auto d : dir) {
+            // Compare every 4 direction and skip cells that are out of boundary or smaller
             int x = i + d[0];
             int y = j + d[1];
             if (x < 0 || x >= m || y < 0 || y >= n || matrix[x][y] <= matrix[i][j])

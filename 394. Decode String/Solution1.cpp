@@ -14,6 +14,9 @@
 // s = "3[a2[c]]", return "accaccacc".
 // s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
 
+
+// Two Stacks Solution:
+
 #include<stack>
 #include<string>
 using namespace std;
@@ -28,18 +31,24 @@ public:
         int i = 0;
         while (i < s.length()) {
             if (isdigit(s[i])) {
+                // get num and push it to the numStack
                 while (isdigit(s[i])) {
                     num += s[i++];
                 }
                 numStack.push(num);
                 num = "";
             } else if (isalpha(s[i])) {
+                // str stores the current decoded string
                 str += s[i++];
             } else if (s[i] == '[') {
+                // '[' means to decode a new string in []
+                // push the already decoded string into strStack
                 strStack.push(str);
                 str = "";
                 i++;
             } else if (s[i] == ']') {
+                // use num(numStack.top()) to repeat current str
+                // and add it to the end of the already decoded string
                 int n = stoi(numStack.top());
                 numStack.pop();
                 string tmp = strStack.top();
@@ -47,6 +56,7 @@ public:
                 for (int j = 0; j < n; ++j) {
                     tmp += str;
                 }
+                // str stores the current decoded string
                 str = tmp;
                 i++;
             }

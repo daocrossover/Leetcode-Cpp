@@ -19,6 +19,7 @@ public:
                 s[i] == ch ? ++cnt : --cnt;
             }
             if (cnt <= 0) continue; // valid up to now
+            // keep tracking the last removal position to avoid duplicates
             for (int j = last; j <= i; ++j) {
                 if (s[j] == ch && (j == last || s[j - 1] != ch)) {
                     // try to remove ch at s[j]
