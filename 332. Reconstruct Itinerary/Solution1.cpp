@@ -18,7 +18,7 @@
 // Explanation: Another possible reconstruction is ["JFK","SFO","ATL","JFK","ATL","SFO"].
 //              But it is larger in lexical order.
 
-// iterative solution:
+// DFS, Iterative Solution:
 
 #include<unordered_map>
 #include<vector>
