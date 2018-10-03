@@ -6,23 +6,30 @@
 
 // Example 1:
 // Input: [1,2,3]
-
 //        1
 //       / \
 //      2   3
-
 // Output: 6
 
 // Example 2:
 // Input: [-10,9,20,null,null,15,7]
-
 //    -10
 //    / \
 //   9  20
 //     /  \
 //    15   7
-
 // Output: 42
+
+
+// Comphrehend the meaning of the path!
+// When return to the node 11, maxSum = 7+11+2.
+// When return to node 4, we can't choose two paths of node 11, so choose larger one between left and right
+// Hence, return value of the dfs is max(left, right) + root->val
+//     4
+//    / \
+//   11 13
+//  / \
+// 7   2
 
 #include<algorithm>
 #include<climits>
