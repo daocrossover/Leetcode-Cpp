@@ -34,6 +34,13 @@
 
 // Output: [3, 4]
 
+
+// BFS Topological Sort:
+// Remove the leaves, update the degrees of inner vertexes.
+// Then remove the new leaves. Doing so level by level until there are 2 or 1 nodes left.
+// What's left is the answer
+// The time complexity and space complexity are both O(n).
+
 #include<queue>
 #include<vector>
 #include<unordered_set>
@@ -50,17 +57,19 @@ public:
             graph[edge.first].insert(edge.second);
             graph[edge.second].insert(edge.first);
         }
-        
+        // add leaves into the queue
         for (int i = 0; i < n; ++i) {
             if (graph[i].size() == 1) q.push(i);
         }
         
         while (n > 2) {
             int size = q.size();
+            // remove the leaves
             n -= size;
             for (int i = 0; i < size; ++i) {
                 int node = q.front();
                 q.pop();
+                // update the degrees of inner vertexes.
                 for (auto adj : graph[node]) {
                     graph[adj].erase(node);
                     if (graph[adj].size() == 1) {

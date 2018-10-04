@@ -31,7 +31,9 @@
 // Output: []
 // Explanation: The endWord "cog" is not in wordList, therefore no possible transformation.
 
+
 // BFS solution:
+// Do BFS of paths instead of words!
 
 #include<vector>
 #include<unordered_set>
@@ -45,6 +47,10 @@ public:
         vector<vector<string>> res;
         unordered_set<string> dict(wordList.begin(), wordList.end());
         queue<vector<string>> q; // store every path
+        // "words" records all the visited nodes on this level
+        // these words will never be visited again after this level 
+        // and should be removed from wordList. This is guaranteed
+        // by the shortest path.
         unordered_set<string> words; // record words in paths that have been looped
         int level = 1, minLevel = INT_MAX; // level: current path length, minLevel: min path length
         q.push(vector<string> {beginWord});
@@ -61,6 +67,8 @@ public:
                 level = t.size();
                 if (level > minLevel) break; // if length some path > minLevel, then pruning
             }
+            // find next words in wordList by changing
+            // each element from 'a' to 'z'
             string end = t.back(); // get the last word of current path
             for (int i = 0; i < end.size(); ++i) {
                 string tmp = end;
