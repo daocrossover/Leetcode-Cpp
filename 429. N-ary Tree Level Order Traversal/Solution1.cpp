@@ -21,7 +21,7 @@ using namespace std;
 // Definition for a Node.
 class Node {
 public:
-    int val = NULL;
+    int val = 0;
     vector<Node*> children;
 
     Node() {}
