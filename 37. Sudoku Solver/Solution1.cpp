@@ -14,7 +14,8 @@
 // The given board size is always 9x9.
 
 
-// Backtrack
+// Backtracking Solution:
+
 #include<vector>
 using namespace std;
 
