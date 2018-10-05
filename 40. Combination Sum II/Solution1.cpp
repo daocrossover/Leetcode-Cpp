@@ -36,6 +36,7 @@ public:
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
         vector<vector<int>> res;
         vector<int> cur;
+        // first sorting
         sort(candidates.begin(), candidates.end());
         backtrack(res, cur, candidates, target, 0);
         return res;

@@ -18,6 +18,9 @@
 //   ".Q.."]
 // ]
 
+
+// Backtracking Solution:
+
 #include<vector>
 using namespace std;
 
@@ -36,6 +39,9 @@ public:
     }
     
     bool isValid (int row, int col, int n) {
+        // In the same diagonal(45 degrees): row + col = C
+        // In the same diagonal(-45 degrees): row - col + n = C
+        // So use two diagonal vectors and a column vector
         if (diagonal1[row + col] == 0 && diagonal2[row - col + n] == 0 && column[col] == 0)
             return true;
         return false;
