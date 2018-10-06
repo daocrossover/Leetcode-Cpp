@@ -21,7 +21,9 @@
 // Follow up:
 // How would you handle overflow for very large input integers?
 
-// recursive solution:
+// Recursive Solution:
+// Generate the first and second of the sequence, check if the rest of the string match the sum recursively.
+// i and j are length of the first and second number. i should in the range of [0, n/2]. The length of their sum should >= max(i,j)
 
 #include<string>
 using namespace std;
@@ -31,9 +33,11 @@ public:
     bool isAdditiveNumber(string num) {
         int n = num.length();
         for (int i = 1; i <= n / 2; ++i) {
+            // numbers in the additive sequence cannot have leading zeros
             if (num[0] == '0' && i > 1) return false;
             string add1 = num.substr(0, i);
             for (int j = 1; max(j, i) <= n - i - j; ++j) {
+                // numbers in the additive sequence cannot have leading zeros
                 if (num[i] == '0' && j > 1) break;
                 string add2 = num.substr(i, j);
                 if (isValid(add1, add2, j+i, num)) {
@@ -46,11 +50,14 @@ public:
     
     bool isValid(string add1, string add2, int start, string num) {
         if (start == num.length()) return true;
+        // function stoll(): convert string to long long
         string sum = to_string(stoll(add1) + stoll(add2));
         int sumLen = sum.length();
         if (num.substr(start, sumLen) != sum || start + sumLen > num.length()) {
+            // add1 + add2 != sum or over the boundry -> return false
             return false;
         } else {
+            // recursively check the rest string
             return isValid(add2, sum, start + sumLen, num);
         }
     }
