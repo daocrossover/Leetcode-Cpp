@@ -18,6 +18,7 @@
 // Note:
 // You may assume that all inputs are consist of lowercase letters a-z.
 
+
 // Trie Tree + DFS:
 
 #include<string>
@@ -25,17 +26,18 @@
 using namespace std;
 
 class Solution {
-    // Class TrieNode 
+    // Trie node structure:
     class TrieNode {
     public:
         TrieNode* children[26];
+        // use the last node of the tree to store the word
         string word;
         TrieNode() {
             word = "";
             for (auto &a : children) a = NULL;
         }
     };
-    // Class Trie
+    // Trie =structure:
     class Trie {
     public:
         TrieNode *root;
@@ -59,6 +61,7 @@ public:
     vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
         vector<string> res;
         if (words.empty() || board.empty() || board[0].empty()) return res;
+        // do not visit the same cell
         vector<vector<bool>> visited(board.size(), vector<bool>(board[0].size(), false));
         Trie T;
         for (string s: words) T.insert(s);

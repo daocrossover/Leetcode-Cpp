@@ -18,17 +18,21 @@
 // Note:
 // You may assume that all words are consist of lowercase letters a-z.
 
+
+// Trie Tree and DFS
 #include<string>
 using namespace std;
 
+// Trie node structure:
 class TrieNode {
 public:
     TrieNode* children[26];
     int isEnd;
-    TrieNode() : isEnd(false) {
+    TrieNode() {
         for (int i = 0; i < 26; ++i){
             children[i] = nullptr;
         }
+        isEnd = false;
     }
 };
     
@@ -55,9 +59,10 @@ public:
     /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
     bool searchWord(string word, int index, TrieNode* node) {
         if(index >= word.size()) return node->isEnd;
-        if (word[index] != '.') {
-            if (node->children[word[index] - 'a'])
-                return searchWord(word, index+1, node->children[word[index] - 'a']);
+        char c = word[index];
+        if (c != '.') {
+            if (node->children[c - 'a'])
+                return searchWord(word, index+1, node->children[c - 'a']);
         } else {
             for (int j = 0; j < 26; ++j) {
                 if (!node->children[j]) continue;

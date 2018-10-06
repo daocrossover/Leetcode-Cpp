@@ -58,8 +58,10 @@ public:
                 if (rest.size() == 0) {
                     res.push_back(word);
                 } else {
-                    vector<string> s = wordBreak(rest, wordDict);
-                    for (string str : s) {
+                    // solve rest recursively
+                    vector<string> strs = wordBreak(rest, wordDict);
+                    // combine the word and the str in strs
+                    for (string str : strs) {
                         res.push_back(word + " " + str);
                     }
                 }
