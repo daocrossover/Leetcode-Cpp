@@ -29,15 +29,17 @@
 // 1. if we don't trade then the profit is same as previous day dp[k, i-1];
 // 2. if we bought the share on j-th day where j=[0..i-1], then sell the share on i-th day
 //    then the profit is prices[i] - prices[j] + dp[k-1, j-1].
-// why the profit of second situatiob is prices[i] - prices[j] + dp[k-1, j-1]?
+
+// why the profit of second situatiob is not prices[i] - prices[j] + dp[k-1, j]?
 // we can't buy the share and sell it on the same day!
+
+// Time Complexity: O(kn), Space Complexity is O(kn).
 
 #include<vector>
 using namespace std;
 
 class Solution {
 public:
-    // Time Complexity: O(kn), Space Complexity is O(kn).
     int maxProfit(vector<int>& prices) {
         if (prices.size() <= 1) {
             return 0;

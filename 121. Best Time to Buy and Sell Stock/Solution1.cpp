@@ -17,6 +17,8 @@
 // Explanation: In this case, no transaction is done, i.e. max profit = 0.
 
 
+// The idea is the same as Kadane's Algorithm
+
 #include<vector>
 using namespace std;
 

@@ -33,6 +33,7 @@ public:
     NumMatrix(vector<vector<int>> matrix) {
         row = matrix.size();
         col = row > 0 ? matrix[0].size() : 0;
+        // may input [0,0,0,0], so that size of dp vector should be increased by 1.
         sums = vector<vector<int>>(row+1, vector<int>(col+1, 0));
         for(int i = 1; i <= row; ++i) {
             for(int j = 1; j <= col; ++j) {
