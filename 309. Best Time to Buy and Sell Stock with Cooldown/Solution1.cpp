@@ -11,7 +11,9 @@
 // Output: 3 
 // Explanation: transactions = [buy, sell, cooldown, buy, sell]
 
-// states transfer:
+
+// State Machine Thinking:
+// States transfer:
 // s0--rest-->s0, s0--buy-->s1, s1--rest-->s1, s1--sell-->s2, s2--rest-->s0
 // s0[i] = max(s0[i - 1], s2[i - 1]); // Stay at s0, or rest from s2
 // s1[i] = max(s1[i - 1], s0[i - 1] - prices[i]); // Stay at s1, or buy from s0
