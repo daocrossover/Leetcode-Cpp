@@ -11,6 +11,14 @@
 // 1 is typically treated as an ugly number.
 // n does not exceed 1690.
 
+
+// (1) 1×2, 2×2, 3×2, 4×2, 5×2, …
+// (2) 1×3, 2×3, 3×3, 4×3, 5×3, …
+// (3) 1×5, 2×5, 3×5, 4×5, 5×5, …
+// Every subsequence is the ugly-sequence itself (1, 2, 3, 4, 5, …) multiply 2, 3, 5.
+// Use similar merge method as merge sort, to get every ugly number from the three subsequence.
+// Every step we choose the smallest one, and move one step after,including nums with same value.
+
 #include<vector>
 #include<algorithm>
 using namespace std;
