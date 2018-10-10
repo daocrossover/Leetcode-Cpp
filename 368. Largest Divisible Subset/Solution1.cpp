@@ -13,7 +13,7 @@
 // Input: [1,2,4,8]
 // Output: [1,2,4,8]
 
-// Dynamic Programming
+// Dynamic Programming Solution:
 
 #include<vector>
 using namespace std;
@@ -25,16 +25,21 @@ public:
         vector<int> father(nums.size(), -1);
         vector<int> dp(nums.size(), 1);
         int index = -1, maxLen = 0;
+        // sort the array first
         sort(nums.begin(), nums.end());
         for (int i = 0; i < nums.size(); ++i) {
+            // if nums[i] can be divided by nums[j],
+            // it can also be divided by every element in dp[j].
             for (int j = i - 1; j >= 0; --j) {
                 if (nums[i] % nums[j] == 0) {
                     if (dp[j] + 1 > dp[i]) {
                         dp[i] = dp[j] + 1;
+                        // record the father of the i
                         father[i] = j;
                     }
                 }
             }
+            // record the max dp[i] and index i
             if (dp[i] > maxLen) {
                 maxLen = dp[i];
                 index = i;

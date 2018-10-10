@@ -16,7 +16,8 @@
 
 // Given a particular n ≥ 1, find out how much money you need to have to guarantee a win.
 
-// Dynamic Programming, MinMax
+// Dynamic Programming Solution: top-down
+// MinMax
 
 #include<vector>
 using namespace std;
@@ -32,6 +33,7 @@ public:
         if (l >= r) return 0;
         if (dp[l][r] != INT_MAX) return dp[l][r];
         for (int i = l; i <= r; ++i) {
+            // we don't know whether high or low, just pick worst case.
             dp[l][r] = min(dp[l][r], max(i+solve(l, i-1, dp), i+solve(i+1, r, dp)));
         }
         return dp[l][r];
