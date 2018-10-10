@@ -15,7 +15,12 @@
 // Note:
 // You may assume that you have an infinite number of each kind of coin.
 
-// Dynamic Programming
+// Dynamic Programming Solution: bottom-up
+// dp[i]: minimum number of coins needed to make change for amount i using coin denominations [C0,...,Cn-1]
+// dp[i] = min(dp[i-Cj]) + 1 (0 <= j <= n-1)
+// Time Complexity: O(S*n), Space Complexity: O(S)
+// where S is the amount, n is denomination count.
+
 #include<vector>
 #include<algorithm>
 using namespace std;
