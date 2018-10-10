@@ -14,7 +14,20 @@
 
 // Note: You may assume that n is not less than 2 and not larger than 58.
 
-// math solution:
+// Math Solution:
+// What is the max product if we break a number N into two factors
+// f=x(N-x)
+// the maximum is (N/2)*(N/2) when N is even or (N-1)/2 *(N+1)/2 when N is odd.
+// When the maximum of f is larger than N, we should do the break.
+// (N/2)*(N/2)>=N, then N>=4
+// (N-1)/2 *(N+1)/2>=N, then N>=5
+// These two expressions mean that factors should be less than 4, otherwise we can do the break and get a better product.
+// The factors in last result should be 1, 2 or 3. Obviously, 1 should be abandoned.
+// Thus, the factors of the perfect product should be 2 or 3.
+// The reason why we should use 3 as many as possible is
+// For 6, 3*3 > 2*2*2. Thus, the optimal product should contain no more than three 2.
+
+// Time Complexity: O(n), Space Complexity: O(1)
 
 class Solution {
 public:
