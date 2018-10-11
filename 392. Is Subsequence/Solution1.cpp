@@ -18,6 +18,10 @@
 // Follow up:
 // If there are lots of incoming S, say S1, S2, ... , Sk where k >= 1B, and you want to check one by one to see if T has its subsequence. In this scenario, how would you change your code?
 
+// Brute Force Solution:
+// Time Complexity: O(n) (length of t), Space Complexity: O(1)
+// Follow up: Time Complexity: O(kn)
+
 #include<string>
 using namespace std;
 
@@ -27,12 +31,8 @@ public:
         if (s.length() > t.length()) return false;
         int i = 0, j = 0;
         while (i < s.length() && j < t.length()) {
-            if (s[i] == t[j]) {
-                ++i;
-                ++j;
-            } else {
-                ++j;
-            }
+            if (s[i] == t[j]) ++i;
+            ++j;
         }
         return i == s.length();
     }

@@ -23,7 +23,7 @@
 // How does it change the problem?
 // What limitation we need to add to the question to allow negative numbers?
 
-// Dynamic Programming
+// Dynamic Programming Solution: bottom-up 
 
 #include<vector>
 using namespace std;

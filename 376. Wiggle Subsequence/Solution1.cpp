@@ -27,6 +27,7 @@
 // Can you do it in O(n) time?
 
 // Greedy solution:
+// Time Complexity: O(n), Space Complexity: O(1)
 
 #include<vector>
 using namespace std;
@@ -35,10 +36,16 @@ class Solution {
 public:
     int wiggleMaxLength(vector<int>& nums) {
         if (nums.empty()) return 0;
-        int prev_diff = 0;
+        // prev_diff:
+        // indicate whether the current subsequence of numbers lies in an increasing or decreasing wiggle.
+        int prev_diff = 0; 
         int res = 1;
         for (int i = 1; i < nums.size(); ++i) {
             int diff = nums[i] - nums[i-1];
+            // if prev_diff > 0
+            // update the length of the found subsequence when diff becomes negative.
+            // if prev_diff < 0
+            // update the length of the found subsequence when diff becomes positive.  
             if((diff > 0 && prev_diff<= 0) || (diff < 0 && prev_diff >= 0)) {
                 ++res;
                 prev_diff = diff;
