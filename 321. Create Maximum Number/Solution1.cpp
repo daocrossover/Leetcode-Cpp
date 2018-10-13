@@ -35,7 +35,7 @@ using namespace std;
 
 class Solution {
 public:
-    // find subsequence with k largest elements in an array 
+    // find subsequence with k largest elements in an array in order
     vector<int> maxArray(vector<int>& nums, int k) {
         vector<int> res;
         if (k == 0) return res;
