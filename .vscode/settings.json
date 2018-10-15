@@ -44,7 +44,8 @@
         "new": "cpp",
         "stdexcept": "cpp",
         "typeinfo": "cpp",
-        "istream": "cpp"
+        "istream": "cpp",
+        "cmath": "cpp"
     },
     "C_Cpp.intelliSenseEngine": "Tag Parser"
 }
