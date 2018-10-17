@@ -14,6 +14,7 @@
 // Initially consider the maxLength between lines, move the pointer at the longer line inwards,
 // we won't gain any increase in area, since it is limited by the shorter line.
 // But moving the shorter line's pointer could turn out to be beneficial
+// Time complexity: O(n), Space complexity: O(1)
 
 #include<vector>
 using namespace std;
