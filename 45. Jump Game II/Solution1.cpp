@@ -12,6 +12,7 @@
 // Note:
 // You can assume that you can always reach the last index.
 
+
 // Greedy Solution:
 
 #include<vector>
