@@ -16,6 +16,9 @@
 // Both num1 and num2 do not contain any leading zero, except the number 0 itself.
 // You must not use any built-in BigInteger library or convert the inputs to integer directly.
 
+
+// num1[i] * num2[j] will be placed at indices [i + j, i + j + 1]
+
 #include<string>
 #include<vector>
 using namespace std;
