@@ -32,7 +32,7 @@ public:
             return memo[position] == 1 ? true : false;
         }
 
-        int furthestJump = min(position + nums[position], nums.size() - 1);
+        int furthestJump = min(position + nums[position], (int)nums.size() - 1);
         for (int nextPosition = position + 1; nextPosition <= furthestJump; nextPosition++) {
             if (canJumpFromPosition(nextPosition, nums)) {
                 memo[position] = 1;

@@ -17,6 +17,8 @@
 
 
 // Greedy Solution:
+// Time Complexity: O(n)
+// Space Complexity: O(1)
 
 #include<vector>
 #include<algorithm>
@@ -24,6 +26,7 @@ using namespace std;
 
 class Solution {
 public:
+    // start from the beginning of the array
     bool canJump(vector<int>& nums) {
         int farthest = 0;
         for (int i = 0; i < nums.size(); ++i) {
@@ -37,5 +40,16 @@ public:
             }
         }
         return false;
+    }
+
+    // start from the end of the array
+    bool canJump1(vector<int>& nums) {
+        int lastPos = nums.size() - 1;
+        for (int i = nums.size() - 1; i >= 0; i--) {
+            if (i + nums[i] >= lastPos) {
+                lastPos = i;
+            }
+        }
+        return lastPos == 0;
     }
 };
