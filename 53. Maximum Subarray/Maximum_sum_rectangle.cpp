@@ -8,7 +8,8 @@
 // Time Complexity: O(mn^2), Space Complexity: O(m)
 
 #include<vector>
-using namespace std;
+using std::vector;
+using std::max;
 
 class Solution {
 public:

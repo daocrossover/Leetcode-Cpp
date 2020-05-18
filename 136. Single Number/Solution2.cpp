@@ -5,7 +5,8 @@
 
 #include<vector>
 #include<unordered_set>
-using namespace std;
+using std::unordered_set;
+using std::vector;
 
 class Solution {
 public:

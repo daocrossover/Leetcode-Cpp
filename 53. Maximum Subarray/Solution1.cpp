@@ -17,7 +17,8 @@
 // Time Complexity: O(n), Space Complexity: O(n)
 
 #include<vector>
-using namespace std;
+using std::vector;
+using std::max;
 
 class Solution {
 public:

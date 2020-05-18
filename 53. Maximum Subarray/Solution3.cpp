@@ -3,7 +3,8 @@
 // If the sum is below zero, then we reset it to the current number (start from current number).
 
 #include<vector>
-using namespace std;
+using std::vector;
+using std::max;
 
 class Solution {
 public:
