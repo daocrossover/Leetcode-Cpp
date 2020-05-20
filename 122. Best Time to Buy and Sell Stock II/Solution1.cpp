@@ -1,3 +1,4 @@
+// Description:
 // Say you have an array for which the ith element is the price of a given stock on day i.
 // Design an algorithm to find the maximum profit.
 // You may complete as many transactions as you like (i.e., buy one and sell one share of the stock multiple times).
@@ -22,9 +23,10 @@
 // Output: 0
 // Explanation: In this case, no transaction is done, i.e. max profit = 0.
 
-
 // once the price is increasing, buy and sell
 // Greedy idea
+// Time complexity : O(n), Single pass
+// Space complexity: O(1)
 
 #include<vector>
 using namespace std;

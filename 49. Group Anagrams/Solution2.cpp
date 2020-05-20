@@ -1,4 +1,5 @@
 // Categorize by Count
+// Two strings are anagrams if and only if their character counts (respective number of occurrences of each character) are the same.
 // Time Complexity: O(NK)
 // where N is the length of strs, and K is the maximum length of a string in strs.
 // Space Complexity: O(NK), the total information content stored in res.
