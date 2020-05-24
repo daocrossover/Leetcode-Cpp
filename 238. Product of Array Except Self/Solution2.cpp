@@ -1,19 +1,22 @@
-// This solution is 666!
+// Left list and Right product
+// Time Complexity: O(n)
+// Space Complexity: O(1)
 
 #include<vector>
-using namespace std;
+using std::vector;
 
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
-        vector<int> result(nums.size());
-        for (int i = 0, tmp = 1; i < nums.size(); i++) {
-            result[i] = tmp;
-            tmp *= nums[i];
+        int n = nums.size();
+        vector<int> result(n, 1);
+        for (int i = 1; i < n; i++) {
+            result[i] = result[i-1] * nums[i-1];
         }
-        for (int i = nums.size() - 1, tmp = 1; i >= 0; i--) {
-            result[i] *= tmp;
-            tmp *= nums[i];
+        int right = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            result[i] *= right;
+            right *= nums[i];
         }
         return result;
     }

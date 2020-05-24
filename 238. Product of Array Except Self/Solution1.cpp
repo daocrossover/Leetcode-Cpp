@@ -10,36 +10,31 @@
 // Follow up:
 // Could you solve it with constant space complexity? (The output array does not count as extra space for the purpose of space complexity analysis.)
 
-// my own trash solution:
+// Left and Right product lists solution:
+// Time Complexity: O(n)
+// Space Complexity: O(n)
 
 #include<vector>
-using namespace std;
+using std::vector;
 
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
-        int product = 1, product1 = 1, count = 0;
-        vector<int> res;
-        for (int i = 0; i < nums.size(); ++i) {
-            if (nums[i] == 0) {
-                product = 0;
-                count++;
-            } else {
-                product1 *= nums[i];
-            }
+        int n = nums.size();
+        vector<int> res(n, 1);
+        vector<int> left(n, 1);
+        vector<int> right(n, 1);
+        for (int i = 1; i < n; ++i) {
+            // left[i] already contains the product of elements to the left of 'i'
+            left[i] = left[i-1] * nums[i-1];
         }
-        for (int i = 0; i < nums.size(); ++i) {
-            if (nums[i] == 0 && count == 1) {
-                res.push_back(product1);
-            } else if (nums[i] == 0 && count > 1) {
-                res.push_back(0);
-            } else {
-                if (product == 0) {
-                    res.push_back(product / nums[i]);
-                } else {
-                    res.push_back(product1 / nums[i]);
-                }
-            }
+        for (int i = n - 2; i >= 0; --i) {
+            // right[i] already contains the product of elements to the right of 'i'
+            right[i] = right[i+1] * nums[i+1];
+        }
+        // constructing the answer array
+        for (int i = 0; i < n; i++) {
+            res[i] = left[i] * right[i];
         }
         return res;
     }

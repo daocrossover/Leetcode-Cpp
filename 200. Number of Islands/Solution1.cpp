@@ -19,11 +19,10 @@
 // 00011
 // Output: 3
 
-
 // DFS Solution:
 
 #include<vector>
-using namespace std;
+using std::vector;
 
 class Solution {
 public:
