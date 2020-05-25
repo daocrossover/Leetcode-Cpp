@@ -20,7 +20,7 @@
 // Binary Search:
 
 #include<vector>
-using namespace std;
+using std::vector;
 
 class Solution {
 public:
@@ -31,9 +31,12 @@ public:
         // Proof by contradiction that mid < hi: if mid == hi, then lo == hi and
         // loop would have been terminated.
         while (lo < hi) {
-            int mid = (lo + hi) / 2;
-            if (nums[mid] > nums[hi]) lo = mid + 1;
-            else hi = mid;
+            int mid = lo + (hi - lo) / 2;
+            if (nums[mid] > nums[hi]) {
+                lo = mid + 1;
+            } else {
+                hi = mid;
+            }
         }
         // lo == hi is the index of the smallest value and also the number of places rotated.
         int rot = lo;
@@ -41,11 +44,16 @@ public:
         hi = nums.size() - 1;
         // The usual binary search and accounting for rotation.
         while (lo <= hi){
-            int mid = (lo + hi) / 2;
+            int mid = lo + (hi - lo) / 2;
             int realmid = (mid + rot) % nums.size();
-            if (nums[realmid] == target) return realmid;
-            if (nums[realmid] < target) lo = mid + 1;
-            else hi = mid - 1;
+            if (nums[realmid] == target) {
+                return realmid;
+            }
+            if (nums[realmid] < target) {
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
         }
         return -1;
     }

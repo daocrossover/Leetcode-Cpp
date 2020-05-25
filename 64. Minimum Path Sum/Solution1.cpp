@@ -15,11 +15,15 @@
 // Explanation: Because the path 1→3→1→1→1 minimizes the sum.
 
 
-// Dynamic Programming Solution:
+// 2-D Dynamic Programming Solution:
 // dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+// Time Complexity: O(mn)
+// Space Complexity: O(mn)
 
 #include<vector>
-using namespace std;
+#include<algorithm>
+using std::vector;
+using std::min;
 
 class Solution {
 public:
