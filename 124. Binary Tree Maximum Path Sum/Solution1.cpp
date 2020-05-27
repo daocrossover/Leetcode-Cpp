@@ -33,7 +33,7 @@
 
 #include<algorithm>
 #include<climits>
-using namespace std;
+using std::max;
 
 // Definition for a binary tree node.
 struct TreeNode {
@@ -44,19 +44,22 @@ struct TreeNode {
 };
 
 class Solution {
-    int res;
 public:
     int maxPathSum(TreeNode* root) {
-        res = INT_MIN;
-        dfs(root);
+        int res = INT_MIN;
+        dfs(root, res);
         return res;
     }
     
-    int dfs(TreeNode* node) {
-        if (!node) return 0;
-        int left = max(0, dfs(node->left));
-        int right = max(0, dfs(node->right));
-        res = max(res, left + right + node->val);
-        return max(left, right) + node->val;
+    int dfs(TreeNode* root, int &res) {
+        if (root == nullptr) {
+            return 0;
+        }
+        int left = dfs(root->left, res);
+        int right = dfs(root->right, res);
+        int max_single = max(root->val, max(left, right) + root->val);
+        int max_top = max(max_single, left + right + root->val);
+        res = max(res, max_top);
+        return max_single;
     }
 };

@@ -27,8 +27,8 @@
 // Dynamic Programming Solution:
 // DP[i][j] = DP[i-1][j-1] + 1 , if text1[i] == text2[j]
 // DP[i][j] = max(DP[i-1][j], DP[i][j-1]) , otherwise
-// Time Complexity: O(n^2)
-// Space Complexity: O(n^2)
+// Time Complexity: O(mn)
+// Space Complexity: O(mn)
 
 #include<string>
 #include<vector>
