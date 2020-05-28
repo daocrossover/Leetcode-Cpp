@@ -16,16 +16,20 @@
 // Space complexity should be O(n).
 // Can you do it like a boss? Do it without using any builtin function like __builtin_popcount in c++ or in any other language.
 
+// Dynamic Programming + Bit Manipulation
+
 #include<vector>
 using namespace std;
 
 class Solution {
 public:
     vector<int> countBits(int num) {
-        vector<int> res(num+1,0);
+        vector<int> res(num + 1, 0);
         int l = 1;
         for (int i = 1; i <= num; ++i) {
-            if (i == l*2) l *= 2;
+            if (i == l * 2) {
+                l *= 2;
+            }
             res[i] = 1 + res[i % l];
         }
         return res;
