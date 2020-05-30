@@ -22,7 +22,6 @@
 // Read more about how a graph is represented.
 // You may assume that there are no duplicate edges in the input prerequisites.
 
-
 // BFS, Topological Sort
 
 #include<vector>
@@ -49,10 +48,11 @@ public:
             count++;
             vector<int>::iterator it;
             for (it = graph[node].begin(); it != graph[node].end(); ++it) {
-                if (--indegrees[*it] == 0)
+                if (--indegrees[*it] == 0) {
                     q.push(*it);
+                }    
             }
         }
-        return (count == numCourses);
+        return count == numCourses;
     }
 };

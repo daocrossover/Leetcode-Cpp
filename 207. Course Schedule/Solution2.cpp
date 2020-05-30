@@ -1,4 +1,8 @@
 // DFS, Black-Grey-White Cycle Detected Solution:
+// White node set (0): not visited
+// Grey node set (1): currently visited and nodes in the visiting path are all grey
+// Black node set (2): already visited and there is no cycle among the nodes
+// The node is black -> all children are visited and no cycle, and the children are all black
 // But could Memory Limit Exceeded
 
 #include<vector>
