@@ -17,7 +17,6 @@
 // The relative order inside both the even and odd groups should remain as it was in the input.
 // The first node is considered odd, the second node even and so on ...
 
-
 // Definition for singly-linked list.
 struct ListNode {
     int val;
@@ -33,8 +32,8 @@ public:
         ListNode *evenHead = even;
         while (even && even->next) {
             odd->next = even->next;
-            even->next = even->next->next;
             odd = odd->next;
+            even->next = odd->next;
             even = even->next;
         }
         odd->next = evenHead;
