@@ -21,7 +21,7 @@
 // Output: "0"
 // Explanation: Remove all the digits from the number and it is left with nothing which is 0.
 
-// using stack:
+// Stack Solution:
 
 #include<string>
 using namespace std;
@@ -30,7 +30,7 @@ class Solution {
 public:
     string removeKdigits(string num, int k) {
         int rest = num.length() - k;
-        string res = "";
+        string res = ""; // using string as a stack
         for (int i = 0; i < num.length(); ++i) {
             while (res.size() > 0 && res.back() > num[i] && k > 0) {
                 // if the previous character in num is larger than the current one
@@ -40,10 +40,12 @@ public:
             }
             res.push_back(num[i]);
         }
-        res.resize(rest);
-        int s = 0;
+        res.resize(rest); // remove redundant characters (corner case: "1111" or "123456")
         // erase zero in front of the string
-        while (s < (int)res.size()-1 && res[s] == '0') s++;
+        int s = 0;
+        while (s < (int)res.size()-1 && res[s] == '0') {
+            s++;
+        }
         res.erase(0, s);
         return res == "" ? "0" : res;
     }
