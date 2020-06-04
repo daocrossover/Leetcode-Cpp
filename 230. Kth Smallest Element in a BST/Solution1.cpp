@@ -24,9 +24,11 @@
 //  1
 // Output: 3
 
-// iterative solution, using stack
+// Iterative In-order Traversal Solution
+// Using stack
+
 #include<stack>
-using namespace std;
+using std::stack;
 
 // Definition for a binary tree node.
 struct TreeNode {
