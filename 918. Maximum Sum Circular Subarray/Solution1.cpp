@@ -37,11 +37,11 @@
 // Kadane's Algorithm Solution:
 // 1. The first is that the subarray take only a middle part, and we know how to find the max subarray sum.
 // 2. The second is that the subarray take a part of head array and a part of tail array.
-// case 2 could be tranferred to the case 1: max(the max subarray sum, the total sum - the min subarray sum)
+// case 2 could be transferred to the case 1: max(the max subarray sum, the total sum - the min subarray sum)
 
 // Corner case: if all numbers are negative, maxSum = max(A) and minSum = sum(A).
 // In this case, max(maxSum, total - minSum) = 0, which means the sum of an empty subarray.
-// According to the deacription, We need to return the max(A), instead of sum of an empty subarray.
+// According to the description, We need to return the max(A), instead of sum of an empty subarray.
 // So we return the maxSum to handle this corner case.
 
 // Time Complexity: O(N)
