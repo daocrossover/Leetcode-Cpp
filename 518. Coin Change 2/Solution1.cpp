@@ -27,12 +27,12 @@
 // Input: amount = 10, coins = [10] 
 // Output: 1
 
-
 // Dynamic Programming Solution:
 // d[i][j]: the number of ways to make change for amount i, using coin types d1,d2,...,dj
 // choose dj or not
 // dp[i][j] = dp[i][j-1] + dp[i-dj][j]
-// Time Complexity: O(mn + nlogn), Space Complexity: O(mn)
+// Time Complexity: O(mn + nlogn)
+// Space Complexity: O(mn)
 
 #include<vector>
 using namespace std;
@@ -42,16 +42,19 @@ public:
     int change(int amount, vector<int>& coins) {
         // sorting the denominations first
         sort(coins.begin(), coins.end());
-        vector<vector<int>> dp(amount+1, vector<int>(coins.size()+1));
+        int n = coins.size();
+        vector<vector<int>> dp(amount+1, vector<int>(n+1));
         for (int i = 1; i <= amount; ++i) dp[i][0] = 0;
         // if the amount == 0, the number of ways should be 1
-        for (int j = 0; j <= coins.size(); ++j) dp[0][j] = 1;
+        for (int j = 0; j <= n; ++j) dp[0][j] = 1;
         for (int i = 1; i <= amount; ++i) {
-            for (int j = 1; j <= coins.size(); ++j) {
+            for (int j = 1; j <= n; ++j) {
                 dp[i][j] = dp[i][j-1];
-                if (i >= coins[j-1]) dp[i][j] += dp[i-coins[j-1]][j];
+                if (i >= coins[j-1]) {
+                    dp[i][j] += dp[i-coins[j-1]][j];
+                }
             }
         }
-        return dp[amount][coins.size()];
+        return dp[amount][n];
     }
 };
