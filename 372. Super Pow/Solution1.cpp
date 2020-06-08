@@ -15,24 +15,33 @@
 // a^1234567 % k = (a^1234560 % k) * (a^7 % k) % k = (a^123456 % k)^10 % k * (a^7 % k) % k
 
 #include<vector>
-using namespace std;
+using std::vector;
 
 class Solution {
-    const int base = 1337;
-    int modularPow(int a, int exponent) {
-        a %= base;
+private:
+    const int k = 1337;
+    
+    // problem 50: Pow(x, n)
+    int modularPow(int a, int b) {
+        a %= k;
         int res = 1;
-        for (int i = 0; i < exponent; ++i) {
-            res = (res * a) % base;
+        while (b != 0) {
+            if (b % 2 != 0) {
+                res = res * a % k;
+            }
+            a = a * a % k;
+            b /= 2;
         }
         return res;
     }
     
 public:
     int superPow(int a, vector<int>& b) {
-        if (b.empty()) return 1;
-        int last_digit = b.back();
-        b.pop_back();
-        return modularPow(superPow(a, b), 10) * modularPow(a, last_digit) % base;
+        a %= k;
+        int res = 1;
+        for (int i = 0; i < b.size(); ++i) {
+            res = modularPow(res, 10) * modularPow(a, b[i]) % k;
+        }
+        return res;
     }
 };
