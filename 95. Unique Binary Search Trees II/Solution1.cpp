@@ -20,11 +20,10 @@
 //     /     /       \                 \
 //    2     1         2                 3
 
-
 // Recursive Solution:
 
 #include<vector>
-using namespace std;
+using std::vector;
 
 // Definition for a binary tree node.
 struct TreeNode {
