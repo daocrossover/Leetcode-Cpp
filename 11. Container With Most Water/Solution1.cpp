@@ -14,10 +14,13 @@
 // Initially consider the maxLength between lines, move the pointer at the longer line inwards,
 // we won't gain any increase in area, since it is limited by the shorter line.
 // But moving the shorter line's pointer could turn out to be beneficial
-// Time complexity: O(n), Space complexity: O(1)
+// Time complexity: O(n)
+// Space complexity: O(1)
 
 #include<vector>
-using namespace std;
+using std::vector;
+using std::max;
+using std::min;
 
 class Solution {
 public:
@@ -26,8 +29,11 @@ public:
         int m = 0;
         while (left < right) {
             m = max(m, min(height[left], height[right]) * (right - left));
-            if (height[left] < height[right]) left++;
-            else right--;
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
         }
         return m;
     }
