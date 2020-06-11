@@ -18,13 +18,13 @@
 // then overwrite array with total number of 0's, then 1's and followed by 2's.
 // Could you come up with a one-pass algorithm using only constant space?
 
-
 // Two Pointers Solution:
 // Time Complexity: O(n) one pass
 // Space Complexity: O(1)
 
 #include<vector>
-using namespace std;
+using std::vector;
+using std::swap;
 
 class Solution {
 public:
