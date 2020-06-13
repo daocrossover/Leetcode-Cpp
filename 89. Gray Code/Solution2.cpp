@@ -3,7 +3,7 @@
 // 1<<n -> 2^n
 
 #include<vector>
-using namespace std;
+using std::vector;
 
 class Solution {
 public:
@@ -11,7 +11,7 @@ public:
         int size = 1<<n;
         vector<int> res;
         for (int i = 0; i < size; ++i) {
-            res.push_back(i ^ i>>1);
+            res.push_back(i ^ i >> 1);
         }
         return res;
     }

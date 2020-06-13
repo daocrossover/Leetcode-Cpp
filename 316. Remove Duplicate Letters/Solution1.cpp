@@ -10,10 +10,14 @@
 // Input: "cbacdcbc"
 // Output: "acdb"
 
+// Stack Solution:
+
 #include<vector>
 #include<string>
 #include<stack>
-using namespace std;
+using std::vector;
+using std::string;
+using std::stack;
 
 class Solution {
 public:
@@ -37,9 +41,10 @@ public:
         }
         
         while (!st.empty()) {
-            res = string(1, 'a' + st.top()) + res;
+            res.push_back(st.top() + 'a');
             st.pop();
         }
+        reverse(res.begin(), res.end());
         return res;
     }
 };

@@ -1,6 +1,5 @@
 // Description:
 // The gray code is a binary numeral system where two successive values differ in only one bit.
-
 // Given a non-negative integer n representing the total number of bits in the code, print the sequence of gray code.
 // A gray code sequence must begin with 0.
 
@@ -26,7 +25,6 @@
 //              A gray code sequence of n has size = 2^n, which for n = 0 the size is 2^0 = 1.
 //              Therefore, for n = 0 the gray code sequence is [0].
 
-
 // Solution:
 // n = 0: 0
 // n = 1: 0, 1
@@ -36,7 +34,7 @@
 //        the second half is the reverse of the first half and plus 2^(i-1)
 
 #include<vector>
-using namespace std;
+using std::vector;
 
 class Solution {
 public:
@@ -45,17 +43,12 @@ public:
         if (n < 0) return gray;
         gray.push_back(0);
         int inc = 1;
-        for(int i = 1; i <= n; ++i) {
-            for(int j = gray.size() - 1; j >= 0; --j) 
-                gray.push_back(gray[j] + inc);
+        for (int i = 1; i <= n; ++i) {
+            for (int j = gray.size() - 1; j >= 0; --j) {
+                gray.push_back(gray[j] | inc);
+            }
             inc <<= 1;
         }
         return gray;
     }
 };
-        // Or: 1 << i -> 2^i
-        // for (int i = 0; i < n; ++i) {
-        //     for (int j = gray.size() - 1; j >= 0; --j) {
-        //         gray.push_back(gray[j] | 1 << i);
-        //     }
-        // }
