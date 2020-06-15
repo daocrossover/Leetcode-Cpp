@@ -24,10 +24,11 @@
 // Explanation: The input is: [5,1,4,null,null,3,6]. The root node's value
 //              is 5 but its right child's value is 4.
 
+// Inorder Travesal of Tree
+// Iterative Solution Using Stack:
 
-// Inorder Travesal of Tree:
 #include<stack>
-using namespace std;
+using std::stack;
 
 // Definition for a binary tree node.
 struct TreeNode {
@@ -40,25 +41,25 @@ struct TreeNode {
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
-        stack<TreeNode*> s;
-        TreeNode* pre = nullptr;
         if (!root) {
             return true;
-        } else {
-            while (root || !s.empty()) {
-                while (root) {
-                    // find the left most children
-                    s.push(root);
-                    root = root->left;
-                }
-                // get the top of the stack and do something
-                root = s.top();
-                s.pop();
-                if (pre && root->val <= pre->val)
-                    return false;
-                pre = root;
-                root = root->right;
+        } 
+        stack<TreeNode*> s;
+        TreeNode* pre = nullptr;
+        while (root || !s.empty()) {
+            while (root) {
+                // find the left most children
+                s.push(root);
+                root = root->left;
             }
+            // get the top of the stack and do something
+            root = s.top();
+            s.pop();
+            if (pre && root->val <= pre->val) {
+                return false;
+            }
+            pre = root;
+            root = root->right;
         }
         return true;
     }

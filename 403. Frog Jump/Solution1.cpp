@@ -32,15 +32,16 @@
 // Return false. There is no way to jump to the last stone as 
 // the gap between the 5th and 6th stone is too large.
 
-
-// Using Hashmap Solution:
+// Hashmap Solution:
 // Use hashmap to represent a mapping from the stone (not index)
 // to the steps that can be taken from this stone.
 
 #include<vector>
 #include<unordered_map>
 #include<unordered_set>
-using namespace std;
+using std::vector;
+using std::unordered_map;
+using std::unordered_set;
 
 class Solution {
 public:
