@@ -1,8 +1,11 @@
 // Dynamic Programming Solution:
-// Time Complexity: O(n), Space Complexity: O(n)
+// Time Complexity: O(n)
+// Space Complexity: O(n)
 
 #include<vector>
-using namespace std;
+using std::vector;
+using std::max;
+using std::min;
 
 class Solution {
 public:
@@ -10,15 +13,14 @@ public:
         int n = height.size();
         if (n == 0) return 0;
         int res = 0;
-        vector<int> left_max(n);
-        vector<int> right_max(n);
+        vector<int> left_max(n), right_max(n);
         left_max[0] = height[0];
-        // Find maximum height of bar from the left end upto an index i in the array left_max
+        // Find maximum height of bar from the left end upto index i in the array left_max
         for (int i = 1; i < n; ++i) {
             left_max[i] = max(height[i], left_max[i-1]);
         }
         right_max[n-1] = height[n-1];
-        // Find maximum height of bar from the right end upto an index i in the array right_max
+        // Find maximum height of bar from the right end upto index i in the array right_max
         for (int i = n-2; i >= 0; --i) {
             right_max[i] = max(height[i], right_max[i+1]);
         }

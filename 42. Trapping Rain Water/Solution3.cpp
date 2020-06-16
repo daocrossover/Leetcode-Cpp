@@ -6,7 +6,8 @@
 // As soon as we find the bar at other end (right) is smaller,
 // we start iterating in opposite direction (from right to left).
 
-// Time Complexity: O(n), Space Complexity: O(1)
+// Time Complexity: O(n)
+// Space Complexity: O(1)
 
 #include<vector>
 using namespace std;
@@ -18,14 +19,14 @@ public:
         int res = 0;
         int left_max = 0, right_max = 0;
         while (left < right) {
-            // direction from left to right
             if (height[left] < height[right]) {
+                // direction from left to right
                 // if height[left] >= left_max, update left_max
                 // else res += (left_max - height[left])
                 height[left] >= left_max ? (left_max = height[left]) : res += (left_max - height[left]);
                 ++left;
             } else {
-            // direction from left to right
+                // direction from left to right
                 // if height[right] >= right_max, update right_max
                 // else res += (right_max - height[left])
                 height[right] >= right_max ? (right_max = height[right]) : res += (right_max - height[right]);
