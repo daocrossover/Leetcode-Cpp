@@ -30,13 +30,17 @@
 // Since 2 is the only number in the set, getRandom always return 2.
 // randomSet.getRandom();
 
-// hash map can't get a random element in O(1) and vector can't remove an element in O(1)
+// Hashmap + Vector Solution:
+// Hashmap can't get a random element in O(1) and vector can't remove an element in O(1)
+// Therefore, combine hashmap and vector
 
-#include<unordered_map>
-#include<vector>
-using namespace std;
+#include <unordered_map>
+#include <vector>
+using std::unordered_map;
+using std::vector;
 
 class RandomizedSet {
+private:
     unordered_map<int, int> hash;
     vector<int> nums;
 public:
@@ -56,6 +60,8 @@ public:
     /** Removes a value from the set. Returns true if the set contained the specified element. */
     bool remove(int val) {
         if (hash.find(val) == hash.end()) return false;
+        // set the end element to the val's position
+        // then remove the end
         int end = nums.back();
         hash[end] = hash[val];
         nums[hash[val]] = end;

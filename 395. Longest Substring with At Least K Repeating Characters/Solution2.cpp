@@ -1,8 +1,10 @@
 // Divide and Conquer(recursion) Solution:
 
-#include<string>
-#include<vector>
-using namespace std;
+#include <string>
+#include <vector>
+using std::string;
+using std::vector;
+using std::max;
 
 class Solution {
 public:

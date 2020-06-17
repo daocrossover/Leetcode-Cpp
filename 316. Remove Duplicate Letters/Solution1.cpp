@@ -12,9 +12,9 @@
 
 // Stack Solution:
 
-#include<vector>
-#include<string>
-#include<stack>
+#include <vector>
+#include <string>
+#include <stack>
 using std::vector;
 using std::string;
 using std::stack;

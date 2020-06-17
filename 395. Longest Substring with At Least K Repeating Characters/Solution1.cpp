@@ -15,7 +15,8 @@
 // 5
 // The longest substring is "ababb", as 'a' is repeated 2 times and 'b' is repeated 3 times.
 
-// recursive solution:
+// Divide and Conquer Solution:
+// Using idx to split the string
 
 #include<unordered_map>
 #include<string>
@@ -24,15 +25,17 @@ using namespace std;
 class Solution {
 public:
     int longestSubstring(string s, int k) {
-        int n = s.length();
-        unordered_map<char, int> count;
-        for (char c : s) ++count[c];
-        int mid = 0;
-        while (mid < n && count[s[mid]] >= k) ++mid;
-        if (mid == n) return n;
-        int left = longestSubstring(s.substr(0, mid), k);
-        while (mid < n && count[s[mid]] < k) ++mid;
-        int right = longestSubstring(s.substr(mid), k);
-        return max(left, right);
+        int n = s.size(), idx = 0, res = 0;
+        int count[26] = {0};
+        for (char c: s) count[c - 'a']++;
+        bool is_continuous = true;
+        for (int i = 0; i < n; ++i) {
+            if (count[s[i] - 'a'] < k) {
+                res = max(res, longestSubstring(s.substr(idx, i - idx), k));
+                is_continuous = false;
+                idx = i + 1;
+            }
+        }
+        return is_continuous ? n : max(res, longestSubstring(s.substr(idx, n - idx), k));
     }
 };
