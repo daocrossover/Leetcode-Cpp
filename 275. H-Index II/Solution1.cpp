@@ -13,8 +13,8 @@
 //              Since the researcher has 3 papers with at least 3 citations each and the remaining 
 //              two with no more than 3 citations each, her h-index is 3.
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:
@@ -22,7 +22,7 @@ public:
         int n = citations.size();
         int low = 0, high = n - 1;
         while (low <= high) {
-            int mid = low + (high - low);
+            int mid = low + (high - low) / 2;
             if (citations[mid] >= n - mid) {
                 high = mid - 1;
             } else{

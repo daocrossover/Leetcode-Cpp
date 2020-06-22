@@ -22,7 +22,7 @@
 // Input: n = 4, k = 9
 // Output: "2314"
 
-
+// Solution:
 // Find regularity in the Permutations: n = 4, k = 17
 // 1234
 // 1243
@@ -55,9 +55,10 @@
 // (17-1) % (4-1)! = 4 and 4 / (4-2)! = 2 -> the second number is 4
 // ...
 
-#include<vector>
-#include<string>
-using namespace std;
+#include <vector>
+#include <string>
+using std::string;
+using std::vector;
 
 class Solution {
 public:
@@ -75,7 +76,7 @@ public:
         for (int i = n; i >= 1; --i) {
             int j = k / f[i-1];
             k %= f[i-1];
-            res += to_string(num[j]);
+            res += '0' + num[j];
             // remember to delete the already used number
             num.erase(num.begin() + j);
         }

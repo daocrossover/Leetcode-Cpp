@@ -13,17 +13,24 @@
 //              two with no more than 3 citations each, her h-index is 3.
 // Note: If there are several possible values for h, the maximum one is taken as the h-index.
 
-#include<vector>
-using namespace std;
+// Sorting Solution:
+// Get reversed order and iterate from the end
+// find the index which is greater than citation
+// Time Complexity: O(nlogn)
+
+#include <vector>
+using std::vector;
+using std::greater;
 
 class Solution {
 public:
     int hIndex(vector<int>& citations) {
-        sort(citations.begin(), citations.end());
-		for (int i = 0; i < citations.size(); ++i) {
-			if (citations[i] >= citations.size() - i)
-				return citations.size() - i;
-		}
-        return 0;
+        sort(citations.begin(), citations.end(), greater<int>());
+        for (int i = 0; i < citations.size(); ++i) {
+            if (i >= citations[i]) {
+                return i;
+            }
+        }
+        return citations.size();
     }
 };

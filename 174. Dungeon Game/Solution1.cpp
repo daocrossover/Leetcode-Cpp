@@ -16,7 +16,6 @@
 
 // For example, given the dungeon below,
 // the initial health of the knight must be at least 7 if he follows the optimal path RIGHT-> RIGHT -> DOWN -> DOWN.
-
 // -2 	-3	3
 // -5	-10	1
 // 10	30	-5
@@ -30,8 +29,10 @@
 // dp[i][j] = min(right move, down move)
 // reverse traversal
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
+using std::max;
+using std::min;
 
 class Solution {
 public:
