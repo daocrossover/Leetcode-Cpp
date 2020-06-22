@@ -10,23 +10,22 @@
 // with equal sums.
 
 // Note:
-// 1 <= k <= len(nums) <= 16.
-// 0 < nums[i] < 10000.
+// 1. 1 <= k <= len(nums) <= 16.
+// 2. 0 < nums[i] < 10000.
 
-
-// DFS Solution:
+// Backtracking Solution:
 // The same idea as Question 416
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:
     bool canPartitionKSubsets(vector<int>& nums, int k) {
         int sum = 0;
-        for (int i = 0; i < nums.size(); ++i) sum += nums[i];
+        for (int num: nums) sum += num;
         if (k <= 0 || sum % k != 0) return false;
-        vector<bool> visited(nums.size());
+        vector<bool> visited(nums.size(), false);
         return canPartition(nums, visited, 0, k, 0, 0, sum / k);
     }
 
@@ -38,15 +37,14 @@ public:
         if (k == 1) return true;
         // An corner case is when sum = 0, method is to use cur_num
         // to record the number of elements in the current subset.
-        if (cur_sum == target && cur_num > 0)
-            return canPartition(nums, visited, 0, k-1, 0, 0, target);
+        if (cur_sum == target && cur_num > 0) return canPartition(nums, visited, 0, k-1, 0, 0, target);
         for (int i = start; i < nums.size(); ++i) {
-            if (!visited[i]) {
-                visited[i] = true;
-                if (canPartition(nums, visited, i+1, k, cur_sum + nums[i], cur_num++, target))
-                    return true;
-                visited[i] = false;
+            if (visited[i]) continue;
+            visited[i] = true;
+            if (canPartition(nums, visited, i+1, k, cur_sum + nums[i], cur_num++, target)) {
+                return true;
             }
+            visited[i] = false;
         }
         return false;
     }
