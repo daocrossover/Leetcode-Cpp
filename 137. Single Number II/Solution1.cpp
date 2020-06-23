@@ -14,9 +14,8 @@
 // Input: [0,1,0,1,0,1,99]
 // Output: 99
 
-
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:
