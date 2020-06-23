@@ -1,5 +1,6 @@
 // Using lower_bound function:
-// Time Complexity: O(nlogn), Space Complexity: O(n)
+// Time Complexity: O(nlogn)
+// Space Complexity: O(n)
 
 #include<vector>
 using namespace std;

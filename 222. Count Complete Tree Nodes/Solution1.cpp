@@ -12,7 +12,6 @@
 //   2   3
 //  / \  /
 // 4  5 6
-
 // Output: 6
 
 // Definition for a binary tree node.
@@ -24,24 +23,21 @@ struct TreeNode {
 };
 
 class Solution {
+private:
     int count = 0;
 public:
     int countNodes(TreeNode* root) {
         if (!root) return 0;
-        int leftHeight = 0, rightHeight = 0;
+        int height = 0;
         TreeNode *l = root, *r = root;
-        while (l) {
-            leftHeight++;
-            l = l->left;
-        }
         while (r) {
-            rightHeight++;
+            l = l->left;
             r = r->right;
+            height++;
         }
-        if (leftHeight == rightHeight) {
-            return (1 << leftHeight) - 1;
-        } else {
-            return 1 + countNodes(root->left) + countNodes(root->right);
+        if (l == nullptr) {
+            return (1 << height) - 1;
         }
+        return 1 + countNodes(root->left) + countNodes(root->right);
     }
 };

@@ -1,8 +1,9 @@
 // DP + Binary search
-// Time Complexity: O(nlogn), Space Complexity: O(n)
+// Time Complexity: O(nlogn)
+// Space Complexity: O(n)
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:
@@ -13,13 +14,19 @@ public:
             // find the first number in nums which is not less than nums[i]
             while (left < right) {
                 int mid = left + (right - left) / 2;
-                if (dp[mid] < nums[i]) left = mid + 1;
-                else right = mid;
+                if (dp[mid] < nums[i]) {
+                    left = mid + 1;
+                } else {
+                    right = mid;
+                }
             }
-            // if not found, append the nums[i] in the back of dp
-            if (right >= dp.size()) dp.push_back(nums[i]);
-            // if found, replace the value in dp with nums[i]
-            else dp[right] = nums[i];
+            if (right >= dp.size()) {
+                // if not found, append the nums[i] in the back of dp
+                dp.push_back(nums[i]);
+            } else {
+                // if found, replace the value in dp with nums[i]
+                dp[right] = nums[i];
+            }
         }
         return dp.size();
     }
