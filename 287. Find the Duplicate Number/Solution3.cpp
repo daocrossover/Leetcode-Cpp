@@ -1,18 +1,18 @@
-// set solution:
-// time O(n) space O(n)
-#include<vector>
-#include<set>
-using namespace std;
+// Sorting Solution, but this method modifies the array
+// Time Complexity: O(nlogn)
+// Space Complexity: O(1)
+
+#include <vector>
+using std::vector;
 
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        set<int> s;
-        for (int i = 0; i < nums.size(); ++i) {
-            if (s.find(nums[i]) != s.end()) {
+        sort(nums.begin(), nums.end());
+        for (int i = 1; i < nums.size(); ++i) {
+            if (nums[i] == nums[i-1]) {
                 return nums[i];
             }
-            s.insert(nums[i]);
         }
         return -1;
     }

@@ -14,31 +14,34 @@
 // Note:
 // You must not modify the array (assume the array is read only).
 // You must use only constant, O(1) extra space.
-// Your runtime complexity should be less than O(n2).
+// Your runtime complexity should be less than O(n^2).
 // There is only one duplicate number in the array, but it could be repeated more than once.
 
-// linkedlist cycle solution:
+// Floyd's Tortoise and Hare Solution
+// Linkedlist Cycle Detection:
+// Time Complexity: O(n)
+// Space Complexity: O(1)
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        if (nums.size() > 1) {
-            int slow = nums[0];
-            int fast = nums[nums[0]];
-            while (slow != fast) {
-                slow = nums[slow];
-                fast = nums[nums[fast]];
-            }
-            fast = 0;
-            while (fast != slow) {
-                fast = nums[fast];
-                slow = nums[slow];
-            }
-            return slow;
+        if (nums.size() <= 1) {
+            return -1;
         }
-        return -1;
+        int slow = nums[0];
+        int fast = nums[nums[0]];
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        }
+        fast = 0;
+        while (fast != slow) {
+            fast = nums[fast];
+            slow = nums[slow];
+        }
+        return slow;
     }
 };
