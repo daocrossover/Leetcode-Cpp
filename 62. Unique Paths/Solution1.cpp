@@ -3,7 +3,6 @@
 // The robot can only move either down or right at any point in time.
 // The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
 // How many possible unique paths are there?
-
 // Note: m and n will be at most 100.
 
 // Example 1:
@@ -19,13 +18,12 @@
 // Input: m = 7, n = 3
 // Output: 28
 
-
 // Math Solution:
 // M = m - 1 + n - 1 = m + n - 2, N = min(m, n) - 1
 // res = C(M, N) = M! / (N!(M - N)!) = ((M - N + 1) * (M - N + 2) * ... * N) / N!
 
-#include<algorithm>
-using namespace std;
+#include <algorithm>
+using std::min;
 
 class Solution {
 public:
@@ -33,8 +31,9 @@ public:
         int M = m + n - 2;
         int N = min(m, n) - 1;
         long res = 1;
-        for (int i = 1; i <= N; i++)
+        for (int i = 1; i <= N; ++i) {
             res = res * (M - N + i) / i;
+        }
         return (int)res;
     }
 };

@@ -12,9 +12,11 @@
 // Output: 2
 // Explanation: 13 = 4 + 9.
 
-// Dynamic Programming
-#include<vector>
-using namespace std;
+// Dynamic Programming Solution:
+
+#include <vector>
+using std::vector;
+using std::min;
 
 class Solution {
 public:

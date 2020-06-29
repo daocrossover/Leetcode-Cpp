@@ -1,8 +1,8 @@
 // Static Dynamic Programming
 
-#include<vector>
-#include<algorithm>
-using namespace std;
+#include <vector>
+using std::vector;
+using std::min;
 
 class Solution {
 public:

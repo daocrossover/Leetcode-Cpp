@@ -20,26 +20,29 @@
 
 // DFS, Iterative Solution:
 
-#include<unordered_map>
-#include<vector>
-#include<string>
-#include<set>
-using namespace std;
+#include <unordered_map>
+#include <vector>
+#include <string>
+#include <set>
+using std::unordered_map;
+using std::vector;
+using std::string;
+using std::multiset;
 
 class Solution {
 public:
-    vector<string> findItinerary(vector<pair<string, string>> tickets) {
-        unordered_map<string, multiset<string>> hash;
+    vector<string> findItinerary(vector<vector<string>>& tickets) {
+        unordered_map<string, multiset<string>> graph;
         for (int i = 0; i < tickets.size(); ++i) {
-            hash[tickets[i].first].insert(tickets[i].second);
+            graph[tickets[i][0]].insert(tickets[i][1]);
         }
         vector<string> march = {"JFK"}; // the storage for greedy searching
         vector<string> res; // store the final results reversely
         while (!march.empty()) {
             string from = march.back();
-            if ((hash.find(from) != hash.end()) && (!hash[from].empty())) { // march further
-                march.push_back(*hash[from].begin());
-                hash[from].erase(hash[from].begin());
+            if ((graph.find(from) != graph.end()) && (!graph[from].empty())) { // march further
+                march.push_back(*graph[from].begin());
+                graph[from].erase(graph[from].begin());
             } else { // can not march further, trace back
                 res.push_back(march.back()); // archive the last place
                 march.pop_back();
