@@ -4,7 +4,6 @@
 // The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
 // Now consider if some obstacles are added to the grids. How many unique paths would there be?
 // An obstacle and empty space is marked as 1 and 0 respectively in the grid.
-
 // Note: m and n will be at most 100.
 
 // Example 1:
@@ -21,11 +20,10 @@
 // 1. Right -> Right -> Down -> Down
 // 2. Down -> Down -> Right -> Right
 
-
 // Dynamic Programming Solution:
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:
@@ -48,9 +46,7 @@ public:
         }
         // the first row in the grid
         for (int j = 0; j < m; j++) {
-            // if encounter the obstacle
             if (obstacleGrid[0][j] == 1) {
-                // the rest cell can't reach the goal
                 while (j < m) {
                     dp[0][j] = 0;
                     j++;
@@ -62,9 +58,11 @@ public:
         
         for (int i = 1; i < n; ++i) {
             for (int j = 1; j < m; ++j) {
-                if (obstacleGrid[i][j] == 0)
+                if (obstacleGrid[i][j] == 0) {
                     dp[i][j] = dp[i-1][j] + dp[i][j-1];
-                else dp[i][j] = 0;
+                } else {
+                    dp[i][j] = 0;
+                }
             }
         }
         return dp[n-1][m-1];
