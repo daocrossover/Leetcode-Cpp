@@ -13,29 +13,34 @@
 // You may assume k is always valid, 1 ≤ k ≤ number of unique elements.
 // Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
 
-#include<vector>
-#include<unordered_map>
-#include<queue>
-using namespace std;
+// Max-heap Solution:
+// Time Complexity: O(nlog(n-k))
+// Space Complexity: O(n-k)
+
+#include <vector>
+#include <unordered_map>
+#include <queue>
+using std::vector;
+using std::unordered_map;
+using std::priority_queue;
+using std::pair;
+using std::make_pair;
 
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
-        unordered_map<int, int> hash;
-        priority_queue<pair<int, int>> q;
+        unordered_map<int, int> count;
+        priority_queue<pair<int, int>> pq;
         vector<int> res;
-        for (int i = 0; i < nums.size(); ++i) {
-            hash[nums[i]]++;
+        for (int num: nums) {
+            count[num]++;
         }
-        unordered_map<int, int>::iterator it;
-        for (it = hash.begin(); it != hash.end(); ++it) {
-            pair<int, int> tmp = make_pair(it->second, it->first);
-            q.push(tmp);
-            if (q.size() > k) q.pop();
-        }
-        for (int i = 0; i < k; ++i) {
-            res.push_back(q.top().second);
-            q.pop();
+        for (auto it = count.begin(); it != count.end(); ++it) {
+            pq.push(make_pair(it->second, it->first));
+            if (pq.size() > count.size() - k) {
+                res.push_back(pq.top().second);
+                pq.pop();
+            }
         }
         return res;
     }

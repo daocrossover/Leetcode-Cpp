@@ -26,7 +26,7 @@ public:
         if (n == 0) {
             return {};
         }
-        vector<int> dp(n, 0), parent(n, -1), res;
+        vector<int> dp(n, 1), parent(n, -1), res;
         int mx = 0, mx_idx = -1;
         // sort the array first
         sort(nums.begin(), nums.end());

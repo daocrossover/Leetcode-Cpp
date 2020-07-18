@@ -16,11 +16,10 @@
 //   [3]
 // ]
 
-
 // DFS Solution:
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 // Definition for a binary tree node.
 struct TreeNode {
@@ -39,7 +38,7 @@ public:
     }
 
     void DFS(TreeNode* root, int level) {
-        if (root == NULL) return;
+        if (root == nullptr) return;
         if (level == res.size()) {
             // The level does not exist in output
             // Create a new level
