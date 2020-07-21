@@ -11,7 +11,6 @@
 // 1 is typically treated as an ugly number.
 // n does not exceed 1690.
 
-
 // (1) 1×2, 2×2, 3×2, 4×2, 5×2, …
 // (2) 1×3, 2×3, 3×3, 4×3, 5×3, …
 // (3) 1×5, 2×5, 3×5, 4×5, 5×5, …
@@ -19,26 +18,22 @@
 // Use similar merge method as merge sort, to get every ugly number from the three subsequence.
 // Every step we choose the smallest one, and move one step after,including nums with same value.
 
-#include<vector>
-#include<algorithm>
-using namespace std;
+#include <vector>
+#include <algorithm>
+using std::vector;
+using std::min;
 
 class Solution {
 public:
     int nthUglyNumber(int n) {
-        vector<int>ugly(n);
+        vector<int> ugly(n);
         ugly[0] = 1;
-        int index2 = 0, index3 = 0, index5 = 0;
-        int factor2 = 2, factor3 = 3, factor5 = 5;
-        for(int i = 1; i < n; ++i){
-            int minNum = min(min(factor2, factor3), factor5);
-            ugly[i] = minNum;
-            if(factor2 == minNum)
-                factor2 = 2 * ugly[++index2];
-            if(factor3 == minNum)
-                factor3 = 3 * ugly[++index3];
-            if(factor5 == minNum)
-                factor5 = 5 * ugly[++index5];
+        int p2 = 0, p3 = 0, p5 = 0;
+        for (int i = 1; i < n; ++i) {
+            ugly[i] = min(min(2 * ugly[p2], 3 * ugly[p3]), 5 * ugly[p5]);
+            if (ugly[i] == 2 * ugly[p2]) p2++;
+            if (ugly[i] == 3 * ugly[p3]) p3++;
+            if (ugly[i] == 5 * ugly[p5]) p5++;
         }
         return ugly[n-1];
     }

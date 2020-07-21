@@ -10,25 +10,21 @@
 // Input: a = "1010", b = "1011"
 // Output: "10101"
 
-#include<string>
-using namespace std;
+#include <string>
+using std::string;
 
 class Solution {
 public:
     string addBinary(string a, string b) {
-        int i = a.length() - 1, j = b.length() - 1;
-        int carry = 0;
-        string res = "";
-        while (i >= 0 || j >= 0) {
-            int add1 = i >= 0 ? a[i] - '0' : 0;
-            int add2 = j >= 0 ? b[j] - '0' : 0;
-            int sum = add1 + add2 + carry;
-            res = to_string(sum % 2) + res;
-            carry = sum / 2;
-            i--;
-            j--;
+        int carry = 0, i = a.length() - 1, j = b.length() - 1;
+        string s = "";
+        while (i >= 0 || j >= 0 || carry == 1) {
+            carry += i >= 0 ? a[i--] - '0' : 0;
+            carry += j >= 0 ? b[j--] - '0' : 0;
+            s += (carry % 2) + '0';
+            carry /= 2;
         }
-        if (carry) res = "1" + res;
-        return res;
+        reverse(s.begin(), s.end());
+        return s;
     }
 };
