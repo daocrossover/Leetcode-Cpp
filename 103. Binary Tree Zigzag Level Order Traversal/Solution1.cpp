@@ -16,11 +16,10 @@
 //   [15,7]
 // ]
 
-
 // DFS Solution:
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 // Definition for a binary tree node.
 struct TreeNode {
