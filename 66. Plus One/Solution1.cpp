@@ -18,8 +18,8 @@
 // Output: [4,3,2,2]
 // Explanation: The array represents the integer 4321.
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:
@@ -28,7 +28,7 @@ public:
         for (int i = digits.size() - 1; i >= 0; --i) {
             int sum = carry + digits[i];
             carry = sum / 10;
-            digits[i]  = sum % 10;
+            digits[i] = sum % 10;
         }
         if (carry == 1) digits.insert(digits.begin(), carry);
         return digits;

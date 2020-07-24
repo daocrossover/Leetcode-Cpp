@@ -11,27 +11,28 @@
 // Your algorithm should run in linear runtime complexity.
 // Could you implement it using only constant space complexity?
 
-// bit manipulation: space O(1)
+// Bit manipulation: 
+// Time Complexity: O(n)
+// Space Complexity: O(1)
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
-        // Pass 1 : 
-        // Get the XOR of the two numbers we need to find
+        // Pass 1: get the XOR of the two numbers we need to find
         int diff = 0;
         for (int num: nums) {
             diff ^= num;
         }
-        // Get its last set bit
-        diff &= -diff;
+        // Get its last set bit (rightmost 1)
+        diff &= -diff; // or diff &= ~(diff - 1)
 
-        // Pass 2 :
+        // Pass 2: the set bit in the diff means the difference of two elements that appear only once.
         vector<int> res(2, 0); // this vector stores the two numbers we will return
         for (int num : nums) {
-            if ((num & diff) == 0) {
+            if ((num & diff) == 0) { // the bit is not set
                 res[0] ^= num;
             } else {
                 res[1] ^= num;
