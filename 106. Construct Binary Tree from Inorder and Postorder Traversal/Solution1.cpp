@@ -15,11 +15,10 @@
 //     /  \
 //    15   7
 
-
 // Recursive Solution:
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 // Definition for a binary tree node.
 struct TreeNode {
@@ -37,7 +36,7 @@ public:
     
     TreeNode* build(int postStart, int inStart, int inEnd, vector<int>& inorder, vector<int>& postorder) {
         if(postStart > postorder.size() - 1 || inStart > inEnd) {
-            return NULL;
+            return nullptr;
         }
         TreeNode* root = new TreeNode(postorder[postStart]);
         // find the root of the tree in the inorder

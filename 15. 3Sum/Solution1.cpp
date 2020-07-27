@@ -13,30 +13,24 @@
 //   [-1, -1, 2]
 // ]
 
-
 // Two Pointers Solution:
 // Sort the array, iterate through the list,
 // and use another two pointers to approach the target.
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
         vector<vector<int>> res;
-        if (nums.empty()) return res;
+        if (nums.size() < 3) return res;
         sort(nums.begin(), nums.end());
         for (int i = 0; i < nums.size() - 2; ++i) {
-            // prunning when the first element is positive
-            if (nums[i] > 0) break;
-            // skip same result
-            if (i > 0 && nums[i] == nums[i-1]) {
-                continue;
-            }
+            if (nums[i] > 0) break; // prunning when the first element is positive
+            if (i > 0 && nums[i] == nums[i-1]) continue; // skip same result
             int j = i + 1, k = nums.size() - 1;
-            // fix nums[i], the target is turned into -nums[i]
-            int target = 0 - nums[i];
+            int target = 0 - nums[i]; // fix nums[i], the target is turned into -nums[i]
             while (j < k) {
                 if (nums[j] + nums[k] == target) {
                     res.push_back({nums[i], nums[j], nums[k]});
