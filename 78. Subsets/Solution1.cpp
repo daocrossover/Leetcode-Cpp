@@ -15,11 +15,10 @@
 //   []
 // ]
 
-
 // Backtracking Solution:
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:

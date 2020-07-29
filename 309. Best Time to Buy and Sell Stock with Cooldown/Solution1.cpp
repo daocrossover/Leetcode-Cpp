@@ -11,7 +11,6 @@
 // Output: 3 
 // Explanation: transactions = [buy, sell, cooldown, buy, sell]
 
-
 // State Machine Thinking:
 // States transfer:
 // s0--rest-->s0, s0--buy-->s1, s1--rest-->s1, s1--sell-->s2, s2--rest-->s0
@@ -24,8 +23,9 @@
 // s1[0] = -prices[0]; After buy, you should have -prices[0] profit. Be positive!
 // s2[0] = INT_MIN; Lower base case
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
+using std::max;
 
 class Solution {
 public:
