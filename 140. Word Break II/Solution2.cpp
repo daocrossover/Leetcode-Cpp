@@ -1,31 +1,34 @@
-#include<unordered_map>
-#include<unordered_set>
-#include<vector>
-#include<string>
-using namespace std;
+#include <vector>
+#include <string>
+#include <unordered_map>
+#include <unordered_set>
+using std::vector;
+using std::string;
+using std::unordered_map;
+using std::unordered_set;
 
 class Solution {
 public:
     vector<string> wordBreak(string s, vector<string>& wordDict) {
-        unordered_set<string> wordSet(wordDict.begin(), wordDict.end());
+        unordered_set<string> word_set(wordDict.begin(), wordDict.end());
         unordered_map<string, vector<string>> hash;
-        vector<string> res = helper(wordSet, hash, s);
+        vector<string> res = helper(word_set, hash, s);
         return res;
     }
     
-    vector<string> helper(unordered_set<string>& wordDict, unordered_map<string, vector<string>>& hash, string s) {
-        if (hash.count(s)) return hash[s];
+    vector<string> helper(unordered_set<string>& word_set, unordered_map<string, vector<string>>& hash, string s) {
+        if (hash.find(s) != hash.end()) return hash[s];
         vector<string> res;
-        if (wordDict.count(s)) res.push_back(s);
+        if (word_set.find(s) != word_set.end()) res.push_back(s);
         for (int i = 1; i < s.length(); ++i) {
             string word = s.substr(i);
-            if (wordDict.count(word)) {
+            if (word_set.find(word) != word_set.end()) {
                 string rem = s.substr(0, i);
-                vector<string> prev = combine(word, helper(wordDict, hash, rem));
+                vector<string> prev = combine(word, helper(word_set, hash, rem));
                 res.insert(res.end(), prev.begin(), prev.end());
             }
         }
-        hash[s] = res; //memorize
+        hash[s] = res; // memorize
         return res;
     }
     
