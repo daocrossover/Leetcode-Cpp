@@ -22,37 +22,39 @@
 // Read more about how a graph is represented.
 // You may assume that there are no duplicate edges in the input prerequisites.
 
-// BFS, Topological Sort
+// BFS Topological Sort
 
-#include<vector>
-#include<queue>
-using namespace std;
+#include <vector>
+#include <queue>
+using std::vector;
+using std::queue;
 
 class Solution {
 public:
-    bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
-        vector<int> indegrees(numCourses);
-        vector<vector<int>> graph(numCourses);
-        for (int i = 0; i < prerequisites.size(); ++i) {
-            indegrees[prerequisites[i].first]++;
-            graph[prerequisites[i].second].push_back(prerequisites[i].first);
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<vector<int>> graph(numCourses, vector<int>{});
+        vector<int> indegree(numCourses, 0);
+        vector<int> res;
+        for (vector<int> p: prerequisites) {
+            graph[p[1]].push_back(p[0]);
+            indegree[p[0]]++;
         }
         queue<int> q;
         for (int i = 0; i < numCourses; ++i) {
-            if (indegrees[i] == 0) q.push(i);
-        }
-        int count = 0;
-        while (!q.empty()) {
-            int node = q.front();
-            q.pop();
-            count++;
-            vector<int>::iterator it;
-            for (it = graph[node].begin(); it != graph[node].end(); ++it) {
-                if (--indegrees[*it] == 0) {
-                    q.push(*it);
-                }    
+            if (indegree[i] == 0) {
+                q.push(i);
             }
         }
-        return count == numCourses;
+        while (!q.empty()) {
+            int cur = q.front();
+            q.pop();
+            res.push_back(cur);
+            for (int n: graph[cur]) {
+                if (--indegree[n] == 0) {
+                    q.push(n);
+                }
+            }
+        }
+        return res.size() == numCourses;
     }
 };

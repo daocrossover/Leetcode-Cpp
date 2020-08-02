@@ -5,19 +5,21 @@
 // The node is black -> all children are visited and no cycle, and the children are all black
 // But could Memory Limit Exceeded
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:
-    bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
         vector<int> visited(numCourses, 0);
         vector<vector<int>> graph(numCourses);
-        for (int i = 0; i < prerequisites.size(); ++i) {
-            graph[prerequisites[i].second].push_back(prerequisites[i].first);
+        for (vector<int> p: prerequisites) {
+            graph[p[1]].push_back(p[0]);
         }
         for (int i = 0; i < numCourses; ++i) {
-            if (!dfs(i, graph, visited)) return false;
+            if (!dfs(i, graph, visited)) {
+                return false;
+            }
         }
         return true;
     }
@@ -27,7 +29,9 @@ public:
         if (visited[node] == 2) return true;
         visited[node] = 1;
         for (int i = 0; i < graph[node].size(); ++i) {
-            if (!dfs(graph[node][i], graph, visited)) return false;
+            if (!dfs(graph[node][i], graph, visited)) {
+                return false;
+            }
         }
         visited[node] = 2;
         return true;

@@ -3,7 +3,6 @@
 // Some courses may have prerequisites, for example to take course 0 you have to first take course 1,
 // which is expressed as a pair: [0,1]
 // Given the total number of courses and a list of prerequisite pairs, return the ordering of courses you should take to finish all courses.
-
 // There may be multiple correct orders, you just need to return one of them. If it is impossible to finish all courses, return an empty array.
 
 // Example 1:
@@ -20,41 +19,42 @@
 //              So one correct course order is [0,1,2,3]. Another correct ordering is [0,2,1,3].
 
 // Note:
-// The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.
-// You may assume that there are no duplicate edges in the input prerequisites.
+// 1. The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.
+// 2. You may assume that there are no duplicate edges in the input prerequisites.
 
+// BFS Topological Sort
 
-// BFS, Topological Sort
-
-#include<vector>
-#include<queue>
-using namespace std;
+#include <vector>
+#include <queue>
+using std::vector;
+using std::queue;
 
 class Solution {
 public:
-    vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
-        vector<int> indegrees(numCourses);
-        vector<vector<int>> graph(numCourses);
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<vector<int>> graph(numCourses, vector<int>{});
+        vector<int> indegree(numCourses, 0);
         vector<int> res;
-        for (int i = 0; i < prerequisites.size(); ++i) {
-            indegrees[prerequisites[i].first]++;
-            graph[prerequisites[i].second].push_back(prerequisites[i].first);
+        for (vector<int> p: prerequisites) {
+            graph[p[1]].push_back(p[0]);
+            indegree[p[0]]++;
         }
         queue<int> q;
         for (int i = 0; i < numCourses; ++i) {
-            if (indegrees[i] == 0) q.push(i);
-        }
-        int count = 0;
-        while (!q.empty()) {
-            int node = q.front();
-            q.pop();
-            res.push_back(node);
-            vector<int>::iterator it;
-            for (it = graph[node].begin(); it != graph[node].end(); ++it) {
-                if (--indegrees[*it] == 0)
-                    q.push(*it);
+            if (indegree[i] == 0) {
+                q.push(i);
             }
         }
-        return res.size() == numCourses ? res : vector<int>();
+        while (!q.empty()) {
+            int cur = q.front();
+            q.pop();
+            res.push_back(cur);
+            for (int n: graph[cur]) {
+                if (--indegree[n] == 0) {
+                    q.push(n);
+                }
+            }
+        }
+        return res.size() == numCourses ? res : vector<int>{};
     }
 };
