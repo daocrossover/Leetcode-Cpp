@@ -17,31 +17,30 @@
 // The length of the array won't exceed 10,000.
 // You may assume the sum of all the numbers is in the range of a signed 32-bit integer.
 
-
-// Hashmap Solution:
+// Presum Hashmap Solution:
 // notes:
 // 1. k can be 0. Hence, sum mod k, when k != 0 (nums = [0, 0] k = 0 is true)
-// 2. element of the array can be 0, insert pair (0, -1) into hashmap first (nums = [0, 0] k = 1 is true)
+// 2. element of the array can be 0, insert pair (0, -1) into premap first (nums = [0, 0] k = 1 is true)
 // 3. at least two continuous elements
 
-#include<vector>
-#include<unordered_map>
-using namespace std;
+#include <vector>
+#include <unordered_map>
+using std::vector;
+using std::unordered_map;
 
 class Solution {
 public:
     bool checkSubarraySum(vector<int>& nums, int k) {
-        unordered_map<int, int> hash;
-        hash.insert(make_pair(0, -1));
+        unordered_map<int, int> pre;
+        pre[0] = -1;
         int sum = 0;
         for (int i = 0; i < nums.size(); ++i) {
             sum += nums[i];
             if (k != 0) sum %= k;
-            if (hash.find(sum) != hash.end()) {
-                if (i - hash[sum] > 1)
-                    return true;
+            if (pre.find(sum) != pre.end()) {
+                if (i - pre[sum] > 1) return true;
             } else {
-                hash[sum] = i;
+                pre[sum] = i;
             }
         }
         return false;
