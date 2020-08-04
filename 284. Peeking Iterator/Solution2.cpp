@@ -1,5 +1,5 @@
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Iterator {
     struct Data;
@@ -15,6 +15,7 @@ public:
 };
 
 // Since Iterator has a copy constructor, use it
+
 class PeekingIterator : public Iterator {
 public:
     PeekingIterator(const vector<int> &nums) : Iterator(nums) {

@@ -14,8 +14,8 @@
 // Below is the interface for Iterator, which is already defined for you.
 // **DO NOT** modify the interface for Iterator.
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Iterator {
     struct Data;
@@ -31,36 +31,34 @@ public:
 };
 
 class PeekingIterator : public Iterator {
-    int value;
-    bool flag;
+    bool has_peeked;
+    int peeked_element;
 public:
 	PeekingIterator(const vector<int>& nums) : Iterator(nums) {
 	    // Initialize any member here.
 	    // **DO NOT** save a copy of nums and manipulate it directly.
 	    // You should only use the Iterator interface methods.
-        flag = false;
-	    
+        has_peeked = false;
 	}
 
     // Returns the next element in the iteration without advancing the iterator.
 	int peek() {
-        if (!flag) {
-            value = Iterator::next();
-            flag = true;
+        if (!has_peeked) {
+            peeked_element = Iterator::next();
+            has_peeked = true;
         }
-        return value;
+        return peeked_element;
 	}
 
 	// hasNext() and next() should behave the same as in the Iterator interface.
 	// Override them if needed.
 	int next() {
-	    if (!flag) return Iterator::next();
-        flag = false;
-        return value;
+	    if (!has_peeked) return Iterator::next();
+        has_peeked = false;
+        return peeked_element;
 	}
 
 	bool hasNext() const {
-	    if (flag || Iterator::hasNext()) return true;
-        return false;
+		return has_peeked || Iterator::hasNext();
 	}
 };
