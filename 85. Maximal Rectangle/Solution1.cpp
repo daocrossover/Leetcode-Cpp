@@ -12,13 +12,14 @@
 // ]
 // Output: 6
 
-
 // This question is similar as 84. Largest Rectangle in Histogram
 // using monotonic stack:
 
-#include<vector>
-#include<stack>
-using namespace std;
+#include <vector>
+#include <stack>
+using std::vector;
+using std::stack;
+using std::max;
 
 class Solution {
 public:
@@ -31,7 +32,7 @@ public:
         // scan and update row by row to find out the largest rectangle of each row.
         for (int i = 0; i < m; ++i) {
             stack<int> st;
-            for (int j = 0; j < n+1; ++j) {
+            for (int j = 0; j <= n; ++j) {
                 // For each row i, if matrix[i][j] == '1', height[i]++, or reset the height[i] to zero.
                 if (j < n) {
                     if (matrix[i][j] == '0') {
@@ -40,17 +41,13 @@ public:
                         height[j]++;
                     }
                 }
-                // more concise than the version in Largest Rectangle in Histogram
-                if (st.empty() || height[st.top()] <= height[j]) {
-                    st.push(j);
-                } else {
-                    while (!st.empty() && height[st.top()] > height[j]) {
-                        int t = st.top();
-                        st.pop();
-                        res = max(res, height[t] * (st.empty() ? j : j-st.top()-1));
-                    }
-                    st.push(j);
+                // Largest Rectangle in Histogram Solution
+                while (!st.empty() && height[st.top()] >= height[j]) {
+                    int cur = st.top();
+                    st.pop();
+                    res = max(res, height[cur] * (st.empty() ? j : j - st.top() - 1));
                 }
+                st.push(j);
             }
         }
         return res;

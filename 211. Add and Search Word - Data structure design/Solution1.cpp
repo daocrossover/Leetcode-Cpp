@@ -18,10 +18,10 @@
 // Note:
 // You may assume that all words are consist of lowercase letters a-z.
 
-
 // Trie Tree and DFS
-#include<string>
-using namespace std;
+
+#include <string>
+using std::string;
 
 // Trie node structure:
 class TrieNode {
@@ -38,7 +38,6 @@ public:
     
 class WordDictionary {    
 public:
-    TrieNode *root;
     /** Initialize your data structure here. */
     WordDictionary() {
         root = new TrieNode();
@@ -61,8 +60,7 @@ public:
         if(index >= word.size()) return node->isEnd;
         char c = word[index];
         if (c != '.') {
-            if (node->children[c - 'a'])
-                return searchWord(word, index+1, node->children[c - 'a']);
+            return node->children[c - 'a'] && searchWord(word, index+1, node->children[c - 'a']);
         } else {
             for (int j = 0; j < 26; ++j) {
                 if (!node->children[j]) continue;
@@ -72,6 +70,9 @@ public:
         return false;
     }
     
+private:
+    TrieNode *root;
+
     bool search(string word) {
         return searchWord(word, 0, root);
     }
