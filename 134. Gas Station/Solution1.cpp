@@ -1,7 +1,6 @@
 // Description:
 // There are N gas stations along a circular route,
 // where the amount of gas at station i is gas[i].
-
 // You have a car with an unlimited gas tank and
 // it costs cost[i] of gas to travel from station i to its next station (i+1).
 // You begin the journey with an empty tank at one of the gas stations.
@@ -19,7 +18,6 @@
 // gas  = [1,2,3,4,5]
 // cost = [3,4,5,1,2]
 // Output: 3
-
 // Explanation:
 // Start at station 3 (index 3) and fill up with 4 unit of gas. Your tank = 0 + 4 = 4
 // Travel to station 4. Your tank = 4 - 1 + 5 = 8
@@ -43,15 +41,13 @@
 // You cannot travel back to station 2, as it requires 4 unit of gas but you only have 3.
 // Therefore, you can't travel around the circuit once no matter where you start.
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:
     int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
-        int start = 0;
-        int tank = 0;
-        int total = 0;
+        int start = 0, tank = 0, total = 0;
         for (int i = 0; i < gas.size(); ++i) {
             tank += gas[i] - cost[i];
             // add up all of the left gas to total
