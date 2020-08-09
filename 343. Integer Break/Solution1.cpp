@@ -27,7 +27,8 @@
 // The reason why we should use 3 as many as possible is
 // For 6, 3*3 > 2*2*2. Thus, the optimal product should contain no more than three 2.
 
-// Time Complexity: O(n), Space Complexity: O(1)
+// Time Complexity: O(n)
+// Space Complexity: O(1)
 
 class Solution {
 public:
