@@ -11,7 +11,6 @@
 // ]
 // Output: 1->1->2->3->4->4->5->6
 
-
 // MinHeap Solution:
 // Time Complexity: O(Nlogk)
 // 1. There are N nodes in the final linked list.
@@ -21,9 +20,10 @@
 // 1. O(n) creating a new linked list costs O(n) space.
 // 2. O(k) the priority queue (often implemented with heaps) costs O(k) space
 
-#include<vector>
-#include<queue>
-using namespace std;
+#include <vector>
+#include <queue>
+using std::vector;
+using std::priority_queue;
 
 // Definition for singly-linked list.
 struct ListNode {
@@ -36,16 +36,17 @@ class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         // construct compare function for data structure ListNode*
-        struct cmp{
+        struct cmp {
             bool operator() (ListNode* a, ListNode* b) {
                 return a->val > b->val;
             }
         };
-        ListNode *head = new ListNode(-1);
-        ListNode *p = head;
+        ListNode *dummy = new ListNode(-1);
+        ListNode *p = dummy;
         priority_queue<ListNode*, vector<ListNode*>, cmp> heap;
-        for (int i = 0; i < lists.size(); ++i) {
-            if (lists[i]) heap.push(lists[i]);
+        // push all heads into the min heap first
+        for (ListNode* l: lists) {
+            if (l) heap.push(l);
         }
         while (!heap.empty()) {
             ListNode* t = heap.top();
@@ -54,6 +55,6 @@ public:
             p = p->next;
             if (t->next) heap.push(t->next);
         }
-        return head->next;
+        return dummy->next;
     }
 };

@@ -11,40 +11,26 @@
 // Output: [[1,5]]
 // Explanation: Intervals [1,4] and [4,5] are considerred overlapping.
 
-
 // Sorting Solution:
 // Time Complexity: O(nlogn)
 // Space Complexity: O(1)
 
-#include<vector>
-using namespace std;
-
-// Definition for an interval.
-struct Interval {
-    int start;
-    int end;
-    Interval() : start(0), end(0) {}
-    Interval(int s, int e) : start(s), end(e) {}
-};
+#include <vector>
+using std::vector;
+using std::max;
 
 class Solution {
 public:
-    static bool myfunction(Interval i, Interval j) {
-        return (i.start < j.start);
-    }
-    
-    vector<Interval> merge(vector<Interval>& intervals) {
-        vector<Interval> res;
-        if (intervals.size() == 0) return res;
-        sort(intervals.begin(), intervals.end(), myfunction);
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        vector<vector<int>> res;
+        if (intervals.empty()) return res;
+        sort(intervals.begin(), intervals.end(), [](vector<int> a, vector<int> b) {return a[0] < b[0];});
         res.push_back(intervals[0]);
         for (int i = 1; i < intervals.size(); ++i) {
-            if (intervals[i].start > res.back().end) {
-                // if the current interval does not overlap with the previous, append it.
+            if (intervals[i][0] > res.back()[1]) {
                 res.push_back(intervals[i]);
             } else {
-                // otherwise, there is overlap, merge the current and previous intervals.
-                res.back().end = max(res.back().end, intervals[i].end);
+                res.back()[1] = max(res.back()[1], intervals[i][1]);
             }
         }
         return res;

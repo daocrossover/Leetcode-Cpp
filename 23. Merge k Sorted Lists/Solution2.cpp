@@ -6,24 +6,24 @@
 // Time Complexity: O(Nlogk)
 // Space Complexity: O(1)
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 // Definition for singly-linked list.
 struct ListNode {
     int val;
     ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
+    ListNode(int x) : val(x), next(nullptr) {}
 };
 
 class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        if (lists.size() == 0) return NULL;
+        if (lists.size() == 0) return nullptr;
         int interval = 1;
         while (interval < lists.size()) {
-            for (int i = 0; i + interval < lists.size(); i += interval*2) {
-                lists[i] = mergeTwoLists(lists[i], lists[i+interval]);            
+            for (int i = 0; i + interval < lists.size(); i += interval * 2) {
+                lists[i] = mergeTwoLists(lists[i], lists[i + interval]);            
             }
             interval *= 2;
         }

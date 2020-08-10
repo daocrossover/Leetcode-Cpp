@@ -2,8 +2,8 @@
 // Time Complexity: O(Nk)
 // Space Complexity: O(1)
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 // Definition for singly-linked list.
 struct ListNode {
