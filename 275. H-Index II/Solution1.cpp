@@ -25,7 +25,7 @@ public:
             int mid = low + (high - low) / 2;
             if (citations[mid] >= n - mid) {
                 high = mid - 1;
-            } else{
+            } else {
                 low = mid + 1;
             }
         }

@@ -29,7 +29,6 @@
 // Output: 0
 // Explanation: The endWord "cog" is not in wordList, therefore no possible transformation.
 
-
 // BFS Solution:
 #include<string>
 #include<unordered_set>

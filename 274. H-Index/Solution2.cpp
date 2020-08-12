@@ -1,4 +1,6 @@
 // Counting Sort Solution:
+// Time Complexity: O(n)
+// Space Comlexity: O(n)
 
 #include <vector>
 using std::vector;

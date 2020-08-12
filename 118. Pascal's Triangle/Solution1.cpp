@@ -13,8 +13,8 @@
 //  [1,4,6,4,1]
 // ]
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:

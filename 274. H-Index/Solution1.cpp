@@ -17,6 +17,7 @@
 // Get reversed order and iterate from the end
 // find the index which is greater than citation
 // Time Complexity: O(nlogn)
+// Space Comlexity: O(1)
 
 #include <vector>
 using std::vector;

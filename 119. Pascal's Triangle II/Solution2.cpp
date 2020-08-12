@@ -1,7 +1,7 @@
 // update the array from the end to the beginning.
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:

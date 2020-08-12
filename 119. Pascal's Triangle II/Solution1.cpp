@@ -10,8 +10,8 @@
 // Follow up:
 // Could you optimize your algorithm to use only O(k) extra space?
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:

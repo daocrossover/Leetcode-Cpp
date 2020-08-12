@@ -19,11 +19,14 @@
 // Explanation: The 1st 1 in friend's guess is a bull, the 2nd or 3rd 1 is a cow.
 // Note: You may assume that the secret number and your friend's guess only contain digits, and their lengths are always equal.
 
-// using map, first bulls, then cows
+// Two-pass Solution
+// Using map, first bulls, then cows
 
-#include<unordered_map>
-#include<string>
-using namespace std;
+#include <unordered_map>
+#include <string>
+using std::unordered_map;
+using std::string;
+using std::to_string;
 
 class Solution {
 public:
@@ -43,6 +46,6 @@ public:
                 hash[guess[i]]--;
             }
         }
-        return to_string(countA) + "A" + to_string(countB-countA) + "B";
+        return to_string(countA) + "A" + to_string(countB - countA) + "B";
     }
 };
