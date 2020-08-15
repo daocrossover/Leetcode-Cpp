@@ -20,63 +20,41 @@
 // You may assume that the given expression is always valid.
 // Do not use the eval built-in library function.
 
-#include<stack>
-#include<string>
-using namespace std;
+// One-stack Solution:
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+
+#include <stack>
+#include <string>
+using std::string;
+using std::stack;
 
 class Solution {
 public:
-    bool IsNum(char ch) {
-        return ch >= '0' && ch <= '9';
-    }
-
-    bool IsOpt(char ch) {
-        return  ch == '+' || ch == '-' || ch == '*' || ch == '/';
-    }
-
-    int Calc(int num1, int num2, char opt) {
-        if (opt == '+') return num1 + num2;
-        else if (opt == '-') return num1 - num2;
-        else if (opt == '*') return num1 * num2;
-        else return num1 / num2;
-    }
-
-    void CalcTop(stack<int> &nums, stack<char> &opts) {
-        int num2 = nums.top(); nums.pop();
-        int num1 = nums.top(); nums.pop();
-        char opt = opts.top(); opts.pop();
-        nums.push(Calc(num1, num2, opt));
-    }
-    
-    int calculate(string s) {  
-        stack<int> nums;
-        stack<char> opts;
-        int num = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (IsNum(s[i])) {
-                num = num * 10 + s[i] - '0';
-            } else if (IsOpt(s[i])) {
-                nums.push(num);
-                num = 0;
-                if (s[i] == '+' || s[i] == '-') {
-                    while (!opts.empty()) {
-                        CalcTop(nums, opts);
-                    }
-                } else {
-                    // s[i] == '*' || s[i] == '/'
-                    while (!opts.empty() && (opts.top()=='*'
-                          || opts.top()=='/')) {
-                        CalcTop(nums, opts);
-                    }
-                }
-                opts.push(s[i]);
+    int calculate(string s) {
+        long res = 0, num = 0, n = s.size();
+        char op = '+';
+        stack<int> st;
+        for (int i = 0; i < n; ++i) {
+            if (isdigit(s[i])) {
+                num = num * 10 + s[i] - '0'; // pay attention to overflow
             }
-
+            if ((!isdigit(s[i]) && s[i] != ' ') || i == n - 1) {
+                if (op == '+') st.push(num);
+                if (op == '-') st.push(-num);
+                if (op == '*' || op == '/') {
+                    int tmp = (op == '*') ? st.top() * num : st.top() / num;
+                    st.pop();
+                    st.push(tmp);
+                }
+                op = s[i];
+                num = 0;
+            }
         }
-        nums.push(num);
-        while (!opts.empty()) {
-            CalcTop(nums, opts);
+        while (!st.empty()) {
+            res += st.top();
+            st.pop();
         }
-        return nums.top();
+        return res;
     }
 };

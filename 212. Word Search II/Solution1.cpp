@@ -32,7 +32,7 @@ public:
     string word;
     TrieNode() {
         word = "";
-        for (auto &c: children) c = NULL;
+        for (auto &c: children) c = nullptr;
     }
 };
 
@@ -82,7 +82,7 @@ public:
 private:
     void dfs(vector<vector<char>>& board, int i, int j, TrieNode* p, vector<vector<bool>>& visited, vector<string>& res) {
         char c = board[i][j];
-        if (visited[i][j] == true || p->children[c-'a'] == NULL) return;
+        if (visited[i][j] || p->children[c-'a'] == nullptr) return;
         p = p->children[c-'a'];
         if (p->word != "") {
             // found one
