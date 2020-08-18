@@ -79,7 +79,8 @@
         "memory_resource": "cpp",
         "cinttypes": "cpp",
         "filesystem": "cpp",
-        "__functional_03": "cpp"
+        "__functional_03": "cpp",
+        "iostream": "cpp"
     },
     "C_Cpp.intelliSenseEngine": "Tag Parser",
     "python.pythonPath": "/usr/bin/python"

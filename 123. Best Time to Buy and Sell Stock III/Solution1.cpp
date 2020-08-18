@@ -1,7 +1,6 @@
 // Description:
 // Say you have an array for which the ith element is the price of a given stock on day i.
 // Design an algorithm to find the maximum profit. You may complete at most two transactions.
-
 // Note: You may not engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again).
 
 // Example 1:
@@ -22,9 +21,12 @@
 // Output: 0
 // Explanation: In this case, no transaction is done, i.e. max profit = 0.
 
-
 // Dynamic Programming Solution:
 // dp[k, i] = max(dp[k, i-1], prices[i] - prices[j] + dp[k-1, j-1]), j=[0..i-1]
+// dp[k, i] = max(dp[k, i-1], prices[i] - min(prices[j] - dp[k-1, j-1])), j=[0..i-1]
+// f[0, i] = 0 zero times transation makes 0 profit
+// f[k, 0] = 0 if there is only one price data point you can't make any money no matter how many times you can trade
+
 // For k transactions, on i-th day,
 // 1. if we don't trade then the profit is same as previous day dp[k, i-1];
 // 2. if we bought the share on j-th day where j=[0..i-1], then sell the share on i-th day
@@ -33,51 +35,30 @@
 // why the profit of second situatiob is not prices[i] - prices[j] + dp[k-1, j]?
 // we can't buy the share and sell it on the same day!
 
-// Time Complexity: O(kn), Space Complexity is O(kn).
+// straigtforward implementation:
+// Time Complexity: O(kn^2) (Time Limit Exceeded)
+// Space Complexity: O(kn)
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
+using std::max;
+using std::min;
 
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        if (prices.size() <= 1) {
-            return 0;
-        } else {
-            int K = 2;
-            int maxProfit = 0;
-            vector<vector<int>> f(K+1, vector<int>(prices.size(), 0));
-            for (int k = 1; k <= K; ++k) {
-                int tmpMax = f[k-1][0] - prices[0];
-                for (int i = 1; i < prices.size(); ++i) {
-                    f[k][i] = max(f[k][i-1], prices[i] + tmpMax);
-                    tmpMax = max(tmpMax, f[k-1][i] - prices[i]);
-                    maxProfit = max(f[k][i], maxProfit);
+        int K = 2, n = prices.size();
+        if (n <= 1) return 0;
+        vector<vector<int>> dp(K+1, vector<int>(n, 0));
+        for (int k = 1; k <= K; ++k) {
+            for (int i = 1; i < n; i++) {
+                int min_value = prices[0];
+                for (int j = 1; j <= i; j++) {
+                    min_value = min(min_value, prices[j] - dp[k-1][j-1]);
+                    dp[k][i] = max(dp[k][i-1], prices[i] - min_value);
                 }
             }
-            return maxProfit;
         }
+        return dp[K][n-1];
     }
-    
-    // straigtforward implementation:
-    // Time Complexity: O(kn^2), Space Complexity is O(kn).
-
-    // int maxProfit(vector<int>& prices) {
-    //     if (prices.size() <= 1) {
-    //         return 0;
-    //     } else {
-    //         int K = 2;
-    //         int maxProfit = 0;
-    //         vector<vector<int>> dp(K+1, vector<int>(prices.size(), 0));
-    //         for (int k = 1; k <= K; ++k) {
-    //             for (int i = 1; i < prices.size(); i++) {
-    //                 int minValue = prices[0];
-    //                 for (int j = 1; j <= i; j++)
-    //                     minValue = min(minValue, prices[j] - dp[k-1, j-1]);
-    //                 dp[k, i] = max(dp[k, i-1], prices[i] - minValue);
-    //             }
-    //         }
-    //         return maxProfit;
-    //     } 
-    // }
 };

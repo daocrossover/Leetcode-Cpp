@@ -20,34 +20,22 @@
 // Output: 0
 // Explanation: You don't need to remove any of the intervals since they're already non-overlapping.
 
-
-// Greedy Solution:
+// Greedy Solution: Sorting
 // The question is the same as Interval Scheduling Problems.
 
-#include<vector>
-using namespace std;
-
-// Definition for an interval.
-struct Interval {
-    int start;
-    int end;
-    Interval() : start(0), end(0) {}
-    Interval(int s, int e) : start(s), end(e) {}
-};
+#include <vector>
+using std::vector;
 
 class Solution {
 public:
-    static bool cmp (Interval i, Interval j) {
-        return (i.end < j.end); 
-    }
-    
-    int eraseOverlapIntervals(vector<Interval>& intervals) {
-        int res = 0;
-        sort(intervals.begin(), intervals.end(), cmp);
-        int right = INT_MIN;
-        for (int i = 0; i < intervals.size(); ++i) {
-            if (intervals[i].start >= right) {
-                right = intervals[i].end;
+    int eraseOverlapIntervals(vector<vector<int>>& intervals) {
+        int res = 0, end = INT_MIN;
+        sort(intervals.begin(), intervals.end(), [](vector<int>& a, vector<int>& b) {
+            return a[1] < b[1]; // sorting Interval.end in ascending order
+        });
+        for (vector<int> i: intervals) {
+            if (i[0] >= end) {
+                end = i[1];
             } else {
                 res++;
             }

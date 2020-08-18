@@ -1,6 +1,7 @@
-// binary search, O(mlogn)
+// Binary Search Solution:
+// Time Complexity: O(mlogn)
 
-#include<vector>
+#include <vector>
 using namespace std;
 
 class Solution {
