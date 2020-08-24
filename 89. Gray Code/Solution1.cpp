@@ -33,7 +33,7 @@
 // n = i: the first half contains the gray code of n = i-1
 //        the second half is the reverse of the first half and plus 2^(i-1)
 
-#include<vector>
+#include <vector>
 using std::vector;
 
 class Solution {

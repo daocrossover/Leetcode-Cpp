@@ -13,10 +13,9 @@
 //   [3,2,1]
 // ]
 
-
 // Backtracking Solution:
 
-#include<vector>
+#include <vector>
 using namespace std;
 
 class Solution {
@@ -29,19 +28,19 @@ public:
         return res;
     }
     
+private:
     void backtrack(vector<vector<int>>& res, vector<int>& cur, vector<int>& nums, vector<bool>& visited) {
         if (cur.size() == nums.size()) {
             res.push_back(cur);
             return;
-        } else {
-            for (int i = 0; i < nums.size(); ++i) {
-                if (visited[i] == true) continue;
-                cur.push_back(nums[i]);
-                visited[i] = true;
-                backtrack(res, cur, nums, visited);
-                cur.pop_back();
-                visited[i] = false;
-            }
+        }
+        for (int i = 0; i < nums.size(); ++i) {
+            if (visited[i]) continue;
+            cur.push_back(nums[i]);
+            visited[i] = true;
+            backtrack(res, cur, nums, visited);
+            cur.pop_back();
+            visited[i] = false;
         }
     }
 };

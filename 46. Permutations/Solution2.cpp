@@ -1,4 +1,4 @@
-#include<vector>
+#include <vector>
 using namespace std;
 
 class Solution {
@@ -9,6 +9,7 @@ public:
 	    return res;
     }
 
+private:
     // permute num[begin..end]
     // invariant: num[0..begin-1] have been fixed/permuted
 	void permuteRecursive(vector<int>& num, int begin, vector<vector<int>>& res)	{

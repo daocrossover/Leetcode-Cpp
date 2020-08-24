@@ -10,10 +10,9 @@
 //   [2,1,1]
 // ]
 
-
 // Backtracking Solution:
 
-#include<vector>
+#include <vector>
 using namespace std;
 
 class Solution {
@@ -28,22 +27,23 @@ public:
         return res;
     }
     
+private:
     void backtrack(vector<vector<int>>& res, vector<int>& cur, vector<int>& nums, vector<bool>& visited) {
         if (cur.size() == nums.size()) {
             res.push_back(cur);
             return;
-        } else {
-            for (int i = 0; i < nums.size(); ++i) {
-                // when a number has the same value with its previous,
-                // we can use this number only if his previous is used
-                if (visited[i] || (i > 0 && nums[i] == nums[i-1] && !visited[i-1]))
-                    continue;
-                cur.push_back(nums[i]);
-                visited[i] = true;
-                backtrack(res, cur, nums, visited);
-                cur.pop_back();
-                visited[i] = false;
+        }
+        for (int i = 0; i < nums.size(); ++i) {
+            // when a number has the same value with its previous,
+            // we can use this number only if his previous is not used
+            if (visited[i] || (i > 0 && nums[i] == nums[i-1] && !visited[i-1])) {
+                continue;
             }
+            cur.push_back(nums[i]);
+            visited[i] = true;
+            backtrack(res, cur, nums, visited);
+            cur.pop_back();
+            visited[i] = false;
         }
     }
 };

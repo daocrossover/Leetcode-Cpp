@@ -16,11 +16,9 @@
 //   []
 // ]
 
-
-
 // Backtracking Solution:
 
-#include<vector>
+#include <vector>
 using namespace std;
 
 class Solution {
@@ -28,18 +26,19 @@ public:
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         vector<vector<int>> res;
         vector<int> cur;
-        // first sorting
-        sort(nums.begin(), nums.end());
+        sort(nums.begin(), nums.end()); // first sorting
         backtrack(res, cur, nums, 0);
         return res;
     }
     
+private:
     void backtrack(vector<vector<int>>& res, vector<int>& cur, vector<int>& nums, int start) {
         res.push_back(cur);
         for (int i = start; i < nums.size(); ++i) {
             // avoid duplicates!
-            if (i > start && nums[i] == nums[i-1])
+            if (i > start && nums[i] == nums[i - 1]) {
                 continue;
+            }
             cur.push_back(nums[i]);
             backtrack(res, cur, nums, i + 1);
             cur.pop_back();

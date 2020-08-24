@@ -1,3 +1,4 @@
+// Description:
 // Given a set of distinct integers, nums, return all possible subsets (the power set).
 // Note: The solution set must not contain duplicate subsets.
 
@@ -28,7 +29,8 @@ public:
         backtrack(res, cur, nums, 0);
         return res;
     }
-    
+
+private:
     void backtrack(vector<vector<int>>& res, vector<int>& cur, vector<int>& nums, int start) {
         res.push_back(cur);
         for (int i = start; i < nums.size(); ++i) {
