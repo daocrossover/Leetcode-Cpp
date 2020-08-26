@@ -20,9 +20,9 @@
 // Time Complexity: O(n)
 // Space Complexity: O(1)
 
-#include<vector>
-#include<algorithm>
-using namespace std;
+#include <vector>
+using std::vector;
+using std::max;
 
 class Solution {
 public:

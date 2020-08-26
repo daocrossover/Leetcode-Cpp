@@ -9,10 +9,9 @@
 // nums[i] can be at most n, where n is the length of array nums.
 // Space complexity: O(n). This comes from the usage of the memo table.
 
-
-#include<vector>
-#include<algorithm>
-using namespace std;
+#include <vector>
+using std::vector;
+using std::min;
 
 class Solution {
 public:

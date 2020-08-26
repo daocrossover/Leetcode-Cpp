@@ -11,9 +11,10 @@
 // First n originates from recursion.
 // Second n comes from the usage of the memo table.
 
-#include<vector>
-#include<algorithm>
-using namespace std;
+#include <vector>
+#include <algorithm>
+using std::vector;
+using std::min;
 
 class Solution {
 public:
@@ -29,7 +30,7 @@ public:
 
     bool canJumpFromPosition(int position, vector<int>& nums) {
         if (memo[position] != 0) {
-            return memo[position] == 1 ? true : false;
+            return memo[position] == 1;
         }
 
         int furthestJump = min(position + nums[position], (int)nums.size() - 1);
