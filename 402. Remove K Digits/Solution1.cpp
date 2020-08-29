@@ -23,13 +23,13 @@
 
 // Stack Solution:
 
-#include<string>
-using namespace std;
+#include <string>
+using std::string;
 
 class Solution {
 public:
     string removeKdigits(string num, int k) {
-        int rest = num.length() - k;
+        int remain = num.length() - k;
         string res = ""; // using string as a stack
         for (int i = 0; i < num.length(); ++i) {
             while (res.size() > 0 && res.back() > num[i] && k > 0) {
@@ -40,10 +40,10 @@ public:
             }
             res.push_back(num[i]);
         }
-        res.resize(rest); // remove redundant characters (corner case: "1111" or "123456")
+        res.resize(remain); // remove redundant characters (corner case: "1111" or "123456")
         // erase zero in front of the string
         int s = 0;
-        while (s < (int)res.size()-1 && res[s] == '0') {
+        while (s < res.length() - 1 && res[s] == '0') {
             s++;
         }
         res.erase(0, s);

@@ -16,7 +16,7 @@
 // Time Complexity: O(n^2) (insertion)
 // Space Complexity: O(n)
 
-#include<vector>
+#include <vector>
 using std::vector;
 
 class Solution {
@@ -33,7 +33,7 @@ public:
             });
         */
         vector<vector<int>> res;
-        for (vector<int>& p: people) {
+        for (vector<int> p: people) {
             // insert the element according to the k value
             res.insert(res.begin() + p[1], p);
         }

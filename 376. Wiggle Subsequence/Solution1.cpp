@@ -27,10 +27,11 @@
 // Can you do it in O(n) time?
 
 // Greedy solution:
-// Time Complexity: O(n), Space Complexity: O(1)
+// Time Complexity: O(n)
+// Space Complexity: O(1)
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:

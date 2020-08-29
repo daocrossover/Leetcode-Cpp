@@ -2,7 +2,7 @@
 // Time Complexity: O(n^2) (insertion sorting idea)
 // Space Complexity: O(1) (no extra array)
 
-#include<vector>
+#include <vector>
 using std::vector;
 
 class Solution {
