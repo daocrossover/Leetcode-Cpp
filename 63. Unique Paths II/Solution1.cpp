@@ -20,7 +20,9 @@
 // 1. Right -> Right -> Down -> Down
 // 2. Down -> Down -> Right -> Right
 
-// Dynamic Programming Solution:
+// 2-D Dynamic Programming Solution:
+// Time Complexity: O(mn)
+// Space Complexity: O(mn)
 
 #include <vector>
 using std::vector;
@@ -32,25 +34,21 @@ public:
         int n = obstacleGrid.size(), m = obstacleGrid[0].size();
         int dp[n][m];
         // the first colomn in the grid
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; ++i) {
             // if encounter the obstacle
             if (obstacleGrid[i][0] == 1) {
                 // the rest cell can't reach the goal
-                while (i < n) {
-                    dp[i][0] = 0;
-                    i++;
-                }
+                dp[i][0] = 0;
+                break;
             } else {
                 dp[i][0] = 1;
             }
         }
         // the first row in the grid
-        for (int j = 0; j < m; j++) {
+        for (int j = 0; j < m; ++j) {
             if (obstacleGrid[0][j] == 1) {
-                while (j < m) {
-                    dp[0][j] = 0;
-                    j++;
-                }
+                dp[0][j] = 0;
+                break;
             } else {
                 dp[0][j] = 1;
             }

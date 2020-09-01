@@ -20,7 +20,7 @@
 
 // Math Solution:
 // M = m - 1 + n - 1 = m + n - 2, N = min(m, n) - 1
-// res = C(M, N) = M! / (N!(M - N)!) = ((M - N + 1) * (M - N + 2) * ... * N) / N!
+// res = C(M, N) = M! / (N!(M - N)!) = ((M - N + 1) * (M - N + 2) * ... * M) / N!
 
 #include <algorithm>
 using std::min;
