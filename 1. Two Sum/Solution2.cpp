@@ -1,9 +1,11 @@
-// 2 pass Hashtable Solution:
-// Time Complexity: O(n), Space Complexity: O(n)
+// 2 pass HashMap Solution:
+// Time Complexity: O(n)
+// Space Complexity: O(n)
 
-#include<vector>
-#include<unordered_map>
-using namespace std;
+#include <vector>
+#include <unordered_map>
+using std::vector;
+using std::unordered_map;
 
 class Solution {
 public:
@@ -11,9 +13,10 @@ public:
         unordered_map<int, int> hash;
         for (int i = 0; i < nums.size(); ++i) hash[nums[i]] = i;
         for (int i = 0; i < nums.size(); ++i) {
-            int rest = target - nums[i];
-            if (hash.find(rest) != hash.end() && hash[rest] != i)
-                return vector<int>{i, hash[rest]};
+            int remain = target - nums[i];
+            if (hash.find(remain) != hash.end() && hash[remain] != i) {
+                return vector<int>{i, hash[remain]};
+            }
         }
         return vector<int>{-1, -1};
     }

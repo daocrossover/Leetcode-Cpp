@@ -11,17 +11,17 @@
 // Input: "cbbd"
 // Output: "bb"
 
-
 // Dynamic Programming Solution:
 // dp[i][j] = 1 (S[i, j] is palindrome)
 //          = 0 (otherwise)
 // dp[i][j] = (dp[i+1][j-1] && S[i] == S[j])
 // base cases: dp[i][i] = 1
 //             dp[i][i+1] = (S[i] == S[i+1])
-// Time complexity: O(n^2), Space complexity: O(n^2)
+// Time complexity: O(n^2)
+// Space complexity: O(n^2)
 
-#include<string>
-using namespace std;
+#include <string>
+using std::string;
 
 class Solution {
 public:
@@ -29,7 +29,7 @@ public:
         if (s == "") return s;
         int n = s.length();
         int dp[n][n];
-        int start = 0, end = 0, maxLen = 0;
+        int start = 0, maxLen = 1;
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < i; ++j) {
                 dp[j][i] = (s[j] == s[i] && (i - j <= 1 || dp[j+1][i-1]));
@@ -37,11 +37,10 @@ public:
                 if (dp[j][i] && maxLen < i - j + 1) {
                     maxLen = i - j + 1;
                     start = j;
-                    end = i;
                 }
             }
             dp[i][i] = 1;
         }
-        return s.substr(start, end - start + 1);
+        return s.substr(start, maxLen);
     }
 };

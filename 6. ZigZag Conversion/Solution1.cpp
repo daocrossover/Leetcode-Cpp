@@ -30,8 +30,8 @@
 // The numRows - 1 row index: k * cycleLen + numRows - 1
 // In inner row i index: k * cycleLen + i and (k+1) * cycleLen - i
 
-#include<string>
-using namespace std;
+#include <string>
+using std::string;
 
 class Solution {
 public:
@@ -43,8 +43,9 @@ public:
         for (int i = 0; i < numRows; ++i) {
             for (int j = 0; j + i < n; j += cycleLen) {
                 res += s[j + i];
-                if (i != 0 && i != numRows - 1 && j + cycleLen - i < n)
+                if (i != 0 && i != numRows - 1 && j + cycleLen - i < n) {
                     res += s[j + cycleLen - i];
+                } 
             }
         }
         return res;

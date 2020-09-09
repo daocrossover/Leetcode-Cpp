@@ -7,9 +7,10 @@
 // Time Complexity: O(2n) = O(n). In the worst case each character will be visited twice by i and j.
 // Space Complexity: O(min(m, n)).
 
-#include<string>
-#include<unordered_set>
-using namespace std;
+#include <string>
+#include <unordered_set>
+using std::string;
+using std::unordered_set;
 
 class Solution {
 public:
@@ -22,8 +23,7 @@ public:
                 // slide j further
                 st.insert(s[j++]);
                 // find the maximum substrings without duplicate characters
-                if (j - i > res)
-                    res = j - i;
+                if (j - i > res) res = j - i;
             } else {
                 // forward i until s[j] is not in the hashset
                 st.erase(s[i++]);

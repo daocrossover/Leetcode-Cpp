@@ -4,7 +4,7 @@
 // maxSubArray in right part or
 // maxSubArray starting from right edge in left part + maxSubArray starting from left edge in right part
 
-#include<vector>
+#include <vector>
 using std::vector;
 using std::max;
 

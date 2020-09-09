@@ -2,7 +2,7 @@
 // Keep a variable to store the current sum.
 // If the sum is below zero, then we reset it to the current number (start from current number).
 
-#include<vector>
+#include <vector>
 using std::vector;
 using std::max;
 

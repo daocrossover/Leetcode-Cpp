@@ -1,8 +1,9 @@
 // Kadane's Algorithm
 // the idea is same as DP
-// Time Complexity: O(n), Space Complexity: O(1)
+// Time Complexity: O(n)
+// Space Complexity: O(1)
 
-#include<vector>
+#include <vector>
 using std::vector;
 using std::max;
 

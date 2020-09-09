@@ -2,14 +2,13 @@
 // A palindrome mirrors around its center. Therefore, a palindrome can be expanded from its center,
 // and there are only 2n−1 such centers.
 // The center of a palindrome can be a letter or in between two letters.
-// Time complexity: O(n^2), Space complexity: O(1)
+// Time complexity: O(n^2)
+// Space complexity: O(1)
 
-#include<string>
-using namespace std;
+#include <string>
+using std::string;
 
 class Solution {
-    int maxLen = 0;
-    int start = 0;
 public:
     string longestPalindrome(string s) {
         if (s.length() <= 1) return s;
@@ -20,6 +19,10 @@ public:
         return s.substr(start, maxLen);
     }
     
+private:
+    int maxLen = 0;
+    int start = 0;
+
     void expandPalindrome(string s, int left, int right) {
         while (left >= 0 && right < s.length() && s[left] == s[right]) {
             left--;

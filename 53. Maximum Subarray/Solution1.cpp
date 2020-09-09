@@ -10,13 +10,13 @@
 // Follow up:
 // If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
 
-
 // Dynamic Programming Solution:
 // dp[i]: the maxSubArray for nums[0:i] which must has nums[i] as the end element.
 // dp[i] = (dp[i-1] > 0 ? dp[i-1] : 0) + nums[i]
-// Time Complexity: O(n), Space Complexity: O(n)
+// Time Complexity: O(n)
+// Space Complexity: O(n)
 
-#include<vector>
+#include <vector>
 using std::vector;
 using std::max;
 

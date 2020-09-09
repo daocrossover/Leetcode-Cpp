@@ -28,7 +28,7 @@
 
 // Inorder Traversal + Merge Two Lists
 
-#include<vector>
+#include <vector>
 using std::vector;
 
 // Definition for a binary tree node.
@@ -43,27 +43,25 @@ struct TreeNode {
 
 class Solution {
 public:
-    void inorder(TreeNode* root, vector<int>& t) {
+    void inorder(TreeNode* root, vector<int>& l) {
         if (!root) return;
-        inorder(root->left, t);
-        t.push_back(root->val);
-        inorder(root->right, t);
+        inorder(root->left, l);
+        l.push_back(root->val);
+        inorder(root->right, l);
     }
     
     vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
-        vector<int> t1;
-        vector<int> t2;
-        vector<int> res;
-        inorder(root1, t1);
-        inorder(root2, t2);
+        vector<int> l1, l2, res;
+        inorder(root1, l1);
+        inorder(root2, l2);
         int i = 0, j = 0;
-        while (res.size() != t1.size() + t2.size()) {
-            if (j == t2.size()) {
-                res.push_back(t1[i++]);
-            } else if (i == t1.size()) {
-                res.push_back(t2[j++]);
+        while (res.size() != l1.size() + l2.size()) {
+            if (j == l2.size()) {
+                res.push_back(l1[i++]);
+            } else if (i == l1.size()) {
+                res.push_back(l2[j++]);
             } else {
-                res.push_back(t1[i] < t2[j] ? t1[i++] : t2[j++]);
+                res.push_back(l1[i] < l2[j] ? l1[i++] : l2[j++]);
             }
         }
         // Or using merge() function in STL
