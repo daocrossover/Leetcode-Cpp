@@ -12,12 +12,14 @@
 // Output: 0
 // Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
 
-
+// maxValue/minValue stores the max/min product of subarray that ends with current nums[i]
 // Remember the max and min value for the previous product
 // since a negative * negative could be positive.
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
+using std::max;
+using std::min;
 
 class Solution {
 public:

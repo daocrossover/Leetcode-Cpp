@@ -20,8 +20,7 @@
 
 // Note: use long to avoid overflow
 
-#include<climits>
-using namespace std;
+#include <climits>
 
 class Solution {
 public:

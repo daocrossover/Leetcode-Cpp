@@ -14,11 +14,10 @@
 // Input: k = 3, n = 9
 // Output: [[1,2,6], [1,3,5], [2,3,4]]
 
-
 // Backtracking Solution:
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:
@@ -28,17 +27,20 @@ public:
         backtrack(res, cur, k, n, 1);
         return res;
     }
-    
+
+private: 
     void backtrack(vector<vector<int>>& res, vector<int>& cur, int k, int n, int start) {
         if (k == 0 && n == 0) {
             res.push_back(cur);
+            return;
+        } else if (k == 0) {
             return;
         }
         
         for (int i = start; i <= 9; ++i) {
             if (i <= n) {
                 cur.push_back(i);
-                backtrack(res, cur, k-1, n-i, i+1);
+                backtrack(res, cur, k - 1, n - i, i + 1);
                 cur.pop_back();
             }
         }

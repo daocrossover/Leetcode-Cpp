@@ -1,5 +1,7 @@
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
+using std::max;
+using std::min;
 
 class Solution {
 public:

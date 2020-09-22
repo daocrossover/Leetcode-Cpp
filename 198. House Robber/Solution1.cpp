@@ -18,23 +18,26 @@
 // Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1).
 //              Total amount you can rob = 2 + 9 + 1 = 12.
 
-
 // Dynamic Programming Solution:
-// Time Complexity: O(n), Space Complexity: O(n)
+// dp[i]: maximum amount of money you can rob till position i
+// dp[i] = max(dp[i-2] + nums[i], dp[i-1])
+// Time Complexity: O(n)
+// Space Complexity: O(n)
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
+using std::max;
 
 class Solution {
 public:
     int rob(vector<int>& nums) {
         int n = nums.size();
         if (n == 0) return 0;
-        vector<int> dp(n+1, 0);
+        vector<int> dp(n + 1, 0);
         dp[0] = 0;
         dp[1] = nums[0];
         for (int i = 1; i < n; ++i) {
-            dp[i+1] = max(dp[i-1] + nums[i], dp[i]);
+            dp[i + 1] = max(dp[i - 1] + nums[i], dp[i]);
         }
         return dp[n];
     }

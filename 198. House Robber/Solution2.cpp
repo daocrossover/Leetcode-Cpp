@@ -1,7 +1,10 @@
-// Time Complexity: O(n), Space Complexity: O(1)
+// Space Optimization
+// Time Complexity: O(n)
+// Space Complexity: O(1)
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
+using std::max;
 
 // the order is: prev2, prev1, num
 class Solution {
