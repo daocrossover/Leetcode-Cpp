@@ -1,13 +1,29 @@
 // Expand Around Center Solution:
 // The center of a palindrome can be a letter or in between two letters.
-// Time complexity: O(n^2), Space complexity: O(1)
+// Time Complexity: O(n^2)
+// Space Complexity: O(1)
 
-#include<string>
-using namespace std;
+#include <string>
+using std::string;
 
 class Solution {
 public:
+    // Iterative Solution
     int countSubstrings(string s) {
+        int n = s.size(), count = 0;
+        for (int i = 0; i < n; i++) {
+            for (int l = i, r = i; l >= 0 && r < n && s[l] == s[r]; l--, r++) {
+                count++;
+            }
+            for (int l = i, r = i + 1; l >= 0 && r < n && s[l] == s[r]; l--, r++) {
+                count++;
+            }
+        }
+        return count++;
+    }
+
+    // Recursive Solution
+    int countSubstrings1(string s) {
         if (s.empty()) return 0;
         int n = s.size(), res = 0;
         for (int i = 0; i < n; ++i) {

@@ -1,6 +1,5 @@
 // Description:
 // Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times.
-
 // Note: The algorithm should run in linear time and in O(1) space.
 
 // Example 1:
@@ -13,13 +12,13 @@
 
 // Solution: Boyer-Moore Majority Vote algorithm
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
-        int count1 = 0, count2 = 0, num1 = 0, num2 = 1;
+        int count1 = 0, count2 = 0, num1 = 0, num2 = 0;
         for (int i = 0; i < nums.size(); ++i) {
             if (nums[i] == num1) {
                 count1++;
@@ -36,7 +35,7 @@ public:
                 count2--;
             }
         }
-        count1 = count2 = 0;
+        count1 = 0, count2 = 0;
         for (int i = 0; i < nums.size(); ++i) {
             if (nums[i] == num1) count1++;
             if (nums[i] == num2) count2++;

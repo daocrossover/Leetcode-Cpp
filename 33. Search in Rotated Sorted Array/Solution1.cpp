@@ -16,10 +16,10 @@
 // Input: nums = [4,5,6,7,0,1,2], target = 3
 // Output: -1
 
-
 // Binary Search:
+// Find the index of the smallest value using binary search first
 
-#include<vector>
+#include <vector>
 using std::vector;
 
 class Solution {

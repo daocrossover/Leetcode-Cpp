@@ -33,25 +33,15 @@ public:
         if (obstacleGrid.size() == 0 || obstacleGrid[0].size() == 0) return 0; 
         int n = obstacleGrid.size(), m = obstacleGrid[0].size();
         int dp[n][m];
+        if (obstacleGrid[0][0] == 1) return 0;
+        dp[0][0] = 1;
         // the first colomn in the grid
-        for (int i = 0; i < n; ++i) {
-            // if encounter the obstacle
-            if (obstacleGrid[i][0] == 1) {
-                // the rest cell can't reach the goal
-                dp[i][0] = 0;
-                break;
-            } else {
-                dp[i][0] = 1;
-            }
+        for (int i = 1; i < n; ++i) {
+            dp[i][0] = (obstacleGrid[i][0] == 0 && dp[i-1][0] == 1) ? 1 : 0;
         }
         // the first row in the grid
-        for (int j = 0; j < m; ++j) {
-            if (obstacleGrid[0][j] == 1) {
-                dp[0][j] = 0;
-                break;
-            } else {
-                dp[0][j] = 1;
-            }
+        for (int j = 1; j < m; ++j) {
+            dp[0][j] = (obstacleGrid[0][j] == 0 && dp[0][j-1] == 1) ? 1 : 0;
         }
         
         for (int i = 1; i < n; ++i) {

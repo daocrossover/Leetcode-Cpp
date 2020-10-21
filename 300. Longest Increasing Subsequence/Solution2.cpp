@@ -11,7 +11,7 @@ public:
         vector<int> dp;
         for (int i = 0; i < nums.size(); ++i) {
             int left = 0, right = dp.size();
-            // find the first number in nums which is not less than nums[i]
+            // find the first number in dp which is not less than nums[i]
             while (left < right) {
                 int mid = left + (right - left) / 2;
                 if (dp[mid] < nums[i]) {

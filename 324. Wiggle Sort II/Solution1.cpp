@@ -21,8 +21,12 @@
 // Together:      4 9 3 8 2 7 1 6 0 5
 // So write nums from the back, interweaving sorted[0..4] (indexed by j) and sorted[5..9] (indexed by k).
 
-#include<vector>
-using namespace std;
+// Sorting
+// Time Complexity: O(nlogn)
+// Space Complexity: O(n)
+
+#include <vector>
+using std::vector;
 
 class Solution {
 public:

@@ -1,3 +1,4 @@
+// 26. Remove Duplicates from Sorted Array
 // Description:
 // Given a sorted array nums, remove the duplicates in-place such that
 // each element appear only once and return the new length.
@@ -31,7 +32,6 @@
 //     print(nums[i]);
 // }
 
-
 // Two Pointer Solution:
 // i: slow ptr, j: faster ptr
 // 1. when nums[i] = nums[j], increment j to skip the duplicate.
@@ -41,8 +41,8 @@
 // Assume that n is the length of array. Each of i and j traverses at most n steps.
 // Space Complexity: O(1)
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:
@@ -55,6 +55,6 @@ public:
                 nums[i] = nums[j];
             }
         }
-        return i+1;
+        return i + 1;
     }
 };

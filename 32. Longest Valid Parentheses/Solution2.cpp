@@ -3,10 +3,14 @@
 // For every ')' encountered, we pop the topmost element and subtract the current element's index from the top element of the stack,
 // which gives the length of the currently encountered valid string of parentheses.
 // If while popping the element, the stack becomes empty, we push the current element's index onto the stack.
+// Time Complexity: O(n)
+// Space Complexity: O(n)
 
-#include<stack>
-#include<string>
-using namespace std;
+#include <stack>
+#include <string>
+using std::stack;
+using std::string;
+using std::max;
 
 class Solution {
 public:

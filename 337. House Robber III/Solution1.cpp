@@ -1,3 +1,5 @@
+// 337. House Robber III
+// Description:
 // The thief has found himself a new place for his thievery again.
 // There is only one entrance to this area, called the "root."
 // Besides the root, each house has one and only one parent house.
@@ -11,7 +13,7 @@
 //      3
 //     / \
 //    2   3
-//     \   \ 
+//     \   \
 //      3   1
 // Output: 7 
 // Explanation: Maximum amount of money the thief can rob = 3 + 3 + 1 = 7.
@@ -21,16 +23,18 @@
 //      3
 //     / \
 //    4   5
-//   / \   \ 
+//   / \   \
 //  1   3   1
 // Output: 9
 // Explanation: Maximum amount of money the thief can rob = 4 + 5 = 9.
 
+// Return value:
 // the first element of which denotes the maximum amount of money that can be robbed if root is not robbed,
 // while the second element signifies the maximum amount of money robbed if it is robbed.
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
+using std::max;
 
 // Definition for a binary tree node.
 struct TreeNode {

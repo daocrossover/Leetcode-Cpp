@@ -35,8 +35,9 @@
 // In principle, the board is infinite, which would cause problems when the active area encroaches the border of the array.
 // How would you address these problems?
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
+using std::pair;
 
 class Solution {
 public:

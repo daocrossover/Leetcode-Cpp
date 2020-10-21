@@ -1,3 +1,4 @@
+// 16. 3Sum Closest
 // Description:
 // Given an array nums of n integers and an integer target,
 // find three integers in nums such that the sum is closest to target.
@@ -8,13 +9,12 @@
 // Given array nums = [-1, 2, 1, -4], and target = 1.
 // The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 
-
 // Two Pointers Solution:
 // Sort the array, iterate through the list,
 // and use another two pointers to approach the target.
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:
@@ -23,7 +23,7 @@ public:
         sort(nums.begin(), nums.end());
         int res = 0, diff = INT_MAX;
         for (int i = 0; i < nums.size(); ++i) {
-            if (i < 0 && nums[i] == nums[i-1]) {
+            if (i > 0 && nums[i] == nums[i-1]) {
                 continue;
             }
             int j = i + 1, k = nums.size() - 1;

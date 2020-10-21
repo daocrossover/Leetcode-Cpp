@@ -1,3 +1,4 @@
+// 48. Rotate Image
 // Description:
 // You are given an n x n 2D matrix representing an image.
 // Rotate the image by 90 degrees (clockwise).
@@ -39,15 +40,14 @@
 //   [16, 7,10,11]
 // ]
 
-
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
+using std::swap;
 
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
-        if (matrix.size() == 0 || matrix[0].size() == 0)
-            return;
+        if (matrix.size() == 0 || matrix[0].size() == 0) return;
         int m = matrix.size(), n = matrix[0].size();
         // swap according to the diagonal
         for (int row = 0; row < m; ++row) {

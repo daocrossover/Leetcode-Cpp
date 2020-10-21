@@ -30,19 +30,19 @@ public:
                 start = local_start; 
                 finish = i; 
             } 
-        } 
+        }
         // There is at-least one non-negative number 
         if (finish != -1) return maxSum; 
         // Special Case: When all numbers in arr[] are negative 
-        maxSum = nums[0]; 
-        start = finish = 0; 
+        maxSum = nums[0];
+        start = finish = 0;
         // Find the maximum element in array 
-        for (int i = 1; i < n; i++) { 
-            if (nums[i] > maxSum) { 
-                maxSum = nums[i]; 
-                start = finish = i; 
+        for (int i = 1; i < n; i++) {
+            if (nums[i] > maxSum) {
+                maxSum = nums[i];
+                start = finish = i;
             } 
-        } 
+        }
         return maxSum;
     }
 

@@ -1,3 +1,4 @@
+// 32. Longest Valid Parentheses
 // Description:
 // Given a string containing just the characters '(' and ')',
 // find the length of the longest valid (well-formed) parentheses substring.
@@ -12,7 +13,6 @@
 // Output: 4
 // Explanation: The longest valid parentheses substring is "()()"
 
-
 // Dynamic Programming Solution:
 // dp[i]: the length of the longest valid substring ending at index i.
 // It's obvious that the valid substrings must end with ')'.
@@ -25,9 +25,14 @@
 // To this, we also add the length of the valid substring just before the term "(,sub_s,)" , i.e. dp[i−dp[i−1]−2].
 // dp[i] = dp[i-1] + dp[i-dp[i-1]-2] + 2
 
-#include<string>
-#include<vector>
-using namespace std;
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+
+#include <string>
+#include <vector>
+using std::string;
+using std::vector;
+using std::max;
 
 class Solution {
 public:

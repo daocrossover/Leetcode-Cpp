@@ -1,6 +1,11 @@
-#include<cstdlib>
-#include<vector>
-using namespace std;
+// Store LinkedList into vector
+// traverse the list once
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+
+#include <cstdlib>
+#include <vector>
+using std::vector;
 
 // Definition for singly-linked list.
 struct ListNode {
@@ -10,7 +15,6 @@ struct ListNode {
 };
 
 class Solution {
-    vector<int> list;
 public:
     /** @param head The linked list's head.
         Note that the head is guaranteed to be not null, so it contains at least one node. */
@@ -25,6 +29,9 @@ public:
     int getRandom() {
         return list[rand() % list.size()];
     }
+
+private:
+    vector<int> list;
 };
 
 /**

@@ -1,6 +1,6 @@
+// 647. Palindromic Substrings
 // Description:
 // Given a string, your task is to count how many palindromic substrings in this string.
-
 // The substrings with different start indexes or
 // end indexes are counted as different substrings even they consist of same characters.
 
@@ -17,14 +17,15 @@
 // Note:
 // The input string length won't exceed 1000.
 
-
 // Dynamic Programming Solution:
 // dp[i][j]: whether s[i, j] a is palindromic string
-// Time Complexity: O(n^2), Space Complexity: O(n^2)
+// Time Complexity: O(n^2)
+// Space Complexity: O(n^2)
 
-#include<string>
-#include<vector>
-using namespace std;
+#include <string>
+#include <vector>
+using std::string;
+using std::vector;
 
 class Solution {
 public:

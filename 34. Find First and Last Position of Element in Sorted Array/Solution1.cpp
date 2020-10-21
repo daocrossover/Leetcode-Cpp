@@ -1,3 +1,4 @@
+// 34. Find First and Last Position of Element in Sorted Array
 // Description:
 // Given an array of integers nums sorted in ascending order,
 // find the starting and ending position of a given target value.
@@ -13,8 +14,8 @@
 // Input: nums = [5,7,7,8,8,10], target = 6
 // Output: [-1,-1]
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:

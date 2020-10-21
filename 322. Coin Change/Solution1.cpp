@@ -1,3 +1,4 @@
+// 322. Coin Change
 // Description:
 // You are given coins of different denominations and a total amount of money amount.
 // Write a function to compute the fewest number of coins that you need to make up that amount.
@@ -18,12 +19,13 @@
 // Dynamic Programming Solution: bottom-up
 // dp[i]: minimum number of coins needed to make change for amount i using coin denominations [C0,...,Cn-1]
 // dp[i] = min(dp[i-Cj]) + 1 (0 <= j <= n-1)
-// Time Complexity: O(S*n), Space Complexity: O(S)
+// Time Complexity: O(S * n)
+// Space Complexity: O(S)
 // where S is the amount, n is denomination count.
 
-#include<vector>
-#include<algorithm>
-using namespace std;
+#include <vector>
+using std::vector;
+using std::min;
 
 class Solution {
 public:
@@ -31,8 +33,8 @@ public:
         int maxLen = amount + 1;             
         vector<int> dp(maxLen, maxLen);  
         dp[0] = 0;   
-        for (int i = 1; i <= amount; i++) {
-            for (int j = 0; j < coins.size(); j++) {
+        for (int i = 1; i <= amount; ++i) {
+            for (int j = 0; j < coins.size(); ++j) {
                 if (coins[j] <= i) {
                     dp[i] = min(dp[i], dp[i - coins[j]] + 1);
                 }

@@ -13,8 +13,15 @@
 // Note: 
 // You may assume k is always valid, 1 ≤ k ≤ array's length.
 
-#include<queue>
-using namespace std;
+// Min Heap Solution:
+// Time Complexity: O(nlogk)
+// Space Complexity: O(k)
+
+#include <vector>
+#include <queue>
+using std::priority_queue;
+using std::vector;
+using std::greater;
 
 class Solution {
 public:
@@ -30,6 +37,13 @@ public:
                 }
             }
         }
+        // Or
+        // for (int n: nums) {
+        //     pq.push(n);
+        //     if (pq.size() > k) {
+        //         pq.pop();
+        //     }
+        // }
         return q.top();
     }
 };

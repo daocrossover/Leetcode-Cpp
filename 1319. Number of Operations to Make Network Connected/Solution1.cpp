@@ -60,7 +60,9 @@ public:
 
 private:
     int find(vector<int>& parent, int i) {
-        if (i == parent[i]) return i;
-        return parent[i] = find(parent, parent[i]); // path compression
+        if (i != parent[i]) {
+            parent[i] = find(parent, parent[i]);
+        }
+        return parent[i];
     }
 };
