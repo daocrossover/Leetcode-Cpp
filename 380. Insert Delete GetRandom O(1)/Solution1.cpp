@@ -1,3 +1,4 @@
+// 380. Insert Delete GetRandom O(1)
 // Description:
 // Design a data structure that supports all following operations in average O(1) time.
 // insert(val): Inserts an item val to the set if not already present.
@@ -40,9 +41,6 @@ using std::unordered_map;
 using std::vector;
 
 class RandomizedSet {
-private:
-    unordered_map<int, int> hash;
-    vector<int> nums;
 public:
     /** Initialize your data structure here. */
     RandomizedSet() {
@@ -63,8 +61,9 @@ public:
         // set the end element to the val's position
         // then remove the end
         int end = nums.back();
-        hash[end] = hash[val];
-        nums[hash[val]] = end;
+        int index = hash[val];
+        hash[end] = index;
+        nums[index] = end;
         nums.pop_back();
         hash.erase(val);
         return true;
@@ -74,6 +73,10 @@ public:
     int getRandom() {
         return nums[rand() % nums.size()];
     }
+
+private:
+    unordered_map<int, int> hash;
+    vector<int> nums;
 };
 
 /**
