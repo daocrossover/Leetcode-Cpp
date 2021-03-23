@@ -16,19 +16,18 @@ private:
     int getCount(int num, int k) {
         // base: ones, tens, hundreds...
         // get how many k at each position
-        // eg. num = 123, k = 1
+        // eg. num = xyzdabc, k = 1
         long base = 1;
         int sum = 0;
         int n = num;
         while (n != 0) {
-            // when 1 is at ones, sum += 1 * 12
-            sum += base * (n / 10);
-            // ones is 3
+            // consider occurrence of one on thousand
+            sum += base * (n / 10); // sum += xyz * 1000 
             int cur = n % 10;
             if (cur == k) {
-                sum += num % base + 1;
+                sum += num % base + 1; // if d == 1 (cur == 1), sum += abc + 1
             } else if (cur > k) {
-                sum += base;
+                sum += base; // if d > 1 (cur > 1), sum += 1000, eg: 1000~1999
             }
             base *= 10;
             n /= 10;

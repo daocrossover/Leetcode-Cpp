@@ -1,3 +1,4 @@
+// 91. Decode Ways
 // Description:
 // A message containing letters from A-Z is being encoded to numbers using the following mapping:
 // 'A' -> 1
@@ -24,15 +25,17 @@
 // if y != '0', y could represent a letter, so dp[i] += dp[i-1]
 // if '10' <= xy <= '26', xy could represent a letter, so dp[i] += dp[i-2]
 
-#include<string>
-#include<vector>
-using namespace std;
+#include <string>
+#include <vector>
+using std::string;
+using std::vector;
 
 class Solution {
 public:
     int numDecodings(string s) {
-        if (s.length() == 0 || (s.length() > 0 && s[0] == 0))
+        if (s.length() == 0 || (s.length() > 0 && s[0] == 0)) {
             return 0;
+        }
         int n = s.length();
         vector<int> dp(n + 1, 0);
         dp[0] = 1;

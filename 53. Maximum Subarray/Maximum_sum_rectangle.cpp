@@ -7,7 +7,7 @@
 // When right reaches last column reset right to 1 and left to 1.
 // Time Complexity: O(mn^2), Space Complexity: O(m)
 
-#include<vector>
+#include <vector>
 using std::vector;
 using std::max;
 
@@ -29,7 +29,7 @@ public:
                 maxSum = sum; 
                 start = local_start; 
                 finish = i; 
-            } 
+            }
         }
         // There is at-least one non-negative number 
         if (finish != -1) return maxSum; 

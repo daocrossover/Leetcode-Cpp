@@ -19,7 +19,7 @@ public:
         res[0] = lo;
         hi = nums.size() - 1;
         while (lo < hi) {
-            // mid + 1 is the trick
+            // mid + 1 is the trick to make mid biased to the right
             int mid = lo + (hi - lo) / 2 + 1;
             if (nums[mid] > target) {
                 hi = mid - 1;
