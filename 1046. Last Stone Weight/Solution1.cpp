@@ -1,3 +1,4 @@
+// 1046. Last Stone Weight
 // Description:
 // We have a collection of stones, each stone has a positive integer weight.
 // Each turn, we choose the two heaviest stones and smash them together.  Suppose the stones have weights x and y with x <= y. 
@@ -20,16 +21,17 @@
 // 1 <= stones[i] <= 1000
 
 // Priority queue solution:
+// Time Complexity: O(nlogn)
 
-#include<vector>
-#include<queue>
+#include <vector>
+#include <queue>
 using std::vector;
 using std::priority_queue;
 
 class Solution {
 public:
     int lastStoneWeight(vector<int>& stones) {
-        priority_queue<int> pq(stones.begin(), stones.end());
+        priority_queue<int> pq(stones.begin(), stones.end()); // initialize with vector
         int max1 = 0, max2 = 0;
         while (pq.size() > 1) {
             max1 = pq.top();
@@ -37,6 +39,7 @@ public:
             max2 = pq.top();
             pq.pop();
             if (max1 != max2) {
+                // if the weights are the same, just destroy them
                 pq.push(max1 - max2);
             }
         }

@@ -1,34 +1,51 @@
+// 295. Find Median from Data Stream
 // Description:
-// Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value.
-// So the median is the mean of the two middle value.
-// For example,
-// [2,3,4], the median is 3
-// [2,3], the median is (2 + 3) / 2 = 2.5
+// The median is the middle value in an ordered integer list. 
+// If the size of the list is even, there is no middle value and the median is the mean of the two middle values.
+// For example, for arr = [2,3,4], the median is 3.
+// For example, for arr = [2,3], the median is (2 + 3) / 2 = 2.5.
 
-// Design a data structure that supports the following two operations:
+// Implement the MedianFinder class:
+// MedianFinder() initializes the MedianFinder object.
+// void addNum(int num) adds the integer num from the data stream to the data structure.
+// double findMedian() returns the median of all elements so far. Answers within 10^-5 of the actual answer will be accepted.
 
-// void addNum(int num) - Add a integer number from the data stream to the data structure.
-// double findMedian() - Return the median of all elements so far.
+// Example 1:
+// Input:
+// ["MedianFinder", "addNum", "addNum", "findMedian", "addNum", "findMedian"]
+// [[], [1], [2], [], [3], []]
+// Output:
+// [null, null, null, 1.5, null, 2.0]
 
-// Example:
-// addNum(1)
-// addNum(2)
-// findMedian() -> 1.5
-// addNum(3) 
-// findMedian() -> 2
-
+// Explanation:
+// MedianFinder medianFinder = new MedianFinder();
+// medianFinder.addNum(1);    // arr = [1]
+// medianFinder.addNum(2);    // arr = [1, 2]
+// medianFinder.findMedian(); // return 1.5 (i.e., (1 + 2) / 2)
+// medianFinder.addNum(3);    // arr[1, 2, 3]
+// medianFinder.findMedian(); // return 2.0
+ 
+// Constraints:
+// 1. -10^5 <= num <= 10^5
+// 2. There will be at least one element in the data structure before calling findMedian.
+// 3. At most 5 * 10^4 calls will be made to addNum and findMedian.
+ 
 // Follow up:
-// If all integer numbers from the stream are between 0 and 100, how would you optimize it?
-// If 99% of all integer numbers from the stream are between 0 and 100, how would you optimize it?
+// 1. If all integer numbers from the stream are in the range [0, 100], how would you optimize your solution?
+// 2. If 99% of all integer numbers from the stream are in the range [0, 100], how would you optimize your solution?
 
-// priority queue solution:
+// Two Heaps Solution:
+// (Priority Queue in C++)
+// Time Complexity: the addNum operation is O(logn), The findMedian operation is O(1).
 
-#include<queue>
+#include <queue>
 using namespace std;
 
 class MedianFinder {
-    priority_queue<int> maxHeap;
-    priority_queue<int, vector<int>, greater<int>> minHeap;
+private:
+    priority_queue<int> max_heap; // the smaller half of the list, max heap
+    priority_queue<int, vector<int>, greater<int>> min_heap; // the larger half of the list, min heap
+
 public:
     /** initialize your data structure here. */
     MedianFinder() {
@@ -36,26 +53,30 @@ public:
     }
     
     void addNum(int num) {
-        if (maxHeap.empty() || num < maxHeap.top()) {
-            maxHeap.push(num);
+        // the max_heap may only have 1 more element than the min_heap at most
+        if (max_heap.empty() || num < max_heap.top()) {
+            max_heap.push(num);
         } else {
-            minHeap.push(num);
+            min_heap.push(num);
         }
-        if (maxHeap.size() > minHeap.size() + 1) {
-            minHeap.push(maxHeap.top());
-            maxHeap.pop();
+        // DO NOT use max_heap.size() - min_heap.size() > 1
+        if (max_heap.size() > min_heap.size() + 1) {
+            min_heap.push(max_heap.top());
+            max_heap.pop();
         }
-        if (minHeap.size() > maxHeap.size()) {
-            maxHeap.push(minHeap.top());
-            minHeap.pop();
+        if (min_heap.size() > max_heap.size()) {
+            max_heap.push(min_heap.top());
+            min_heap.pop();
         }
     }
     
     double findMedian() {
-        if (maxHeap.size() > minHeap.size()) {
-            return (double)maxHeap.top();
+        // if max_heap size = min_heap size + 1, return max_heap top
+        // else max_heap size = min_heap size, return mean of max_heap top and min_heap top
+        if (max_heap.size() > min_heap.size()) {
+            return (double)max_heap.top();
         } else {
-            return (double)(maxHeap.top() + minHeap.top())/2;
+            return (double)(max_heap.top() + min_heap.top())/2;
         }
     }
 };

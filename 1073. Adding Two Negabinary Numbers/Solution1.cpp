@@ -52,12 +52,13 @@ public:
         while (i >= 0 || j >= 0 || carry != 0) {
             if (i >= 0) carry += arr1[i--];
             if (j >= 0) carry += arr2[j--];
-            res.push_back(carry & 1);
+            res.push_back(carry & 1); // reverse the vector in the end
             carry = -(carry >> 1);
         }
+        // remove the leading zeros
         while (res.size() > 1 && res.back() == 0) {
             res.pop_back();
-        }
+        } 
         reverse(res.begin(), res.end());
         return res;
     }

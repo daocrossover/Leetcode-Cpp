@@ -35,6 +35,10 @@
 // 1. 1 <= chars.length <= 2000
 // 2. chars[i] is a lower-case English letter, upper-case English letter, digit, or symbol.
 
+// Two Pointers:
+// i is for checking the consecutive repeating characters
+// j is for constructing the compressed string
+
 #include <vector>
 #include <string>
 using std::vector;
@@ -43,11 +47,11 @@ using std::to_string;
 class Solution {
 public:
     int compress(vector<char>& chars) {
-        int i = 0, j = 0;
-        while (i < chars.size()){
+        int i = 0, j = 0, n = chars.size();
+        while (i < n) {
             char cur = chars[i];
             int count = 0;
-            while (i < chars.size() && chars[i] == cur){
+            while (i < n && chars[i] == cur){
                 i++;
                 count++;
             }
