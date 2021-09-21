@@ -1,35 +1,47 @@
+// 480. Sliding Window Median
 // Description:
-// Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value.
-// Examples:
-// [2,3,4] , the median is 3
-// [2,3], the median is (2 + 3) / 2 = 2.5
-// Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. 
-// Each time the sliding window moves right by one position. Your job is to output the median array for each window in the original array.
+// The median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. 
+// So the median is the mean of the two middle values.
 
-// For example,
-// Given nums = [1,3,-1,-3,5,3,6,7], and k = 3.
+// For examples, if arr = [2,3,4], the median is 3.
+// For examples, if arr = [1,2,3,4], the median is (2 + 3) / 2 = 2.5.
+// You are given an integer array nums and an integer k. There is a sliding window of size k which is moving from the very left of the array to the very right. 
+// You can only see the k numbers in the window. Each time the sliding window moves right by one position.
+
+// Return the median array for each window in the original array. Answers within 10^-5 of the actual value will be accepted.
+
+// Example 1:
+// Input: nums = [1,3,-1,-3,5,3,6,7], k = 3
+// Output: [1.00000,-1.00000,-1.00000,3.00000,5.00000,6.00000]
+// Explanation: 
 // Window position                Median
-// ---------------               -----
-// [1  3  -1] -3  5  3  6  7       1
+// ---------------                -----
+// [1  3  -1] -3  5  3  6  7        1
 //  1 [3  -1  -3] 5  3  6  7       -1
 //  1  3 [-1  -3  5] 3  6  7       -1
-//  1  3  -1 [-3  5  3] 6  7       3
-//  1  3  -1  -3 [5  3  6] 7       5
-//  1  3  -1  -3  5 [3  6  7]      6
-// Therefore, return the median sliding window as [1,-1,-1,3,5,6].
+//  1  3  -1 [-3  5  3] 6  7        3
+//  1  3  -1  -3 [5  3  6] 7        5
+//  1  3  -1  -3  5 [3  6  7]       6
 
-// Note:
-// You may assume k is always valid, ie: k is always smaller than input array's size for non-empty array.
-// Answers within 10^-5 of the actual value will be accepted as correct.
+// Example 2:
+// Input: nums = [1,2,3,4,2,3,1,4,2], k = 3
+// Output: [2.00000,3.00000,3.00000,3.00000,2.00000,3.00000,2.00000]
+
+// Constraints:
+// 1. 1 <= k <= nums.length <= 10^5
+// 2. 2^31 <= nums[i] <= 2^31 - 1
+
 
 // Two Mulitiset Solution:
-// Create two treeset (ordered), store left and right part of arrays (split by median)
+// First thinking is to use two heaps (max-heap and min-heap), but need to remove the number out of the window.
+// And stl priority_queue do not have the remove function, so we use two treesets (std::multiset)
+// Create two treesets (ordered), store left and right part of arrays (split by median)
 // the size of upper is larger than that of lower but will not exceed 1
 // when k = odd number, the median is the first element of upper
 // when k = even number, the median is the average of the last element of lower and first element of upper
 
-// Time Complexity: O(nlogk)
-// TreeSet remove element O(logk), Priority Queue remove element O(k)
+// Time Complexity: O(nlogk) since TreeSet remove element O(logk)
+// Using Priority Queue (Java) remove element O(k), so the time complexity will be O(nk)
 // Space Complexity: O(k)
 
 #include <vector>
@@ -61,12 +73,12 @@ public:
             }
             
             // balance the size of two sets
-            while (upper.size() < lower.size()) {
+            if (upper.size() < lower.size()) {
                 upper.insert(*lower.rbegin());
-                lower.erase(--lower.end());
+                lower.erase(--lower.end()); // DO NOT use lower.erase(lower.rbegin())
             }
             
-            while (upper.size() > lower.size() + 1) {
+            if (upper.size() > lower.size() + 1) {
                 lower.insert(*upper.begin());
                 upper.erase(upper.begin());
             }

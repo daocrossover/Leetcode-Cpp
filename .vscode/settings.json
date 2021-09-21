@@ -88,7 +88,8 @@
         "concepts": "cpp",
         "stop_token": "cpp",
         "numbers": "cpp",
-        "semaphore": "cpp"
+        "semaphore": "cpp",
+        "climits": "cpp"
     },
     "C_Cpp.intelliSenseEngine": "Tag Parser",
     "python.pythonPath": "/usr/bin/python"

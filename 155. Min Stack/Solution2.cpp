@@ -1,12 +1,12 @@
 // One stack solution
 
-#include<stack>
-#include<climits>
+#include <stack>
+#include <climits>
 using std::stack;
 
 class MinStack {
 private:
-    stack<int> dataStack;
+    stack<int> data_stack;
     int min;
 public:
     /** initialize your data structure here. */
@@ -15,23 +15,25 @@ public:
     }
     
     void push(int x) {
+        // only push the old minimum value when the current 
+        // minimum value changes after pushing the new value x
         if (x <= min) {
-            dataStack.push(min);
+            data_stack.push(min);
             min = x;
         }
-        dataStack.push(x);
+        data_stack.push(x);
     }
     
     void pop() {
-        if (dataStack.top() == min) {
-            dataStack.pop();
-            min = dataStack.top();
+        if (data_stack.top() == min) {
+            data_stack.pop();
+            min = data_stack.top();
         }
-        dataStack.pop();
+        data_stack.pop();
     }
     
     int top() {
-        return dataStack.top();
+        return data_stack.top();
     }
     
     int getMin() {

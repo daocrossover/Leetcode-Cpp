@@ -1,31 +1,34 @@
+// 516. Longest Palindromic Subsequence
 // Description:
 // Given a string s, find the longest palindromic subsequence's length in s.
-// You may assume that the maximum length of s is 1000.
+// A subsequence is a sequence that can be derived from another sequence by deleting some or no elements without changing the order of the remaining elements.
 
 // Example 1:
-// Input:
-// "bbbab"
-// Output:
-// 4
-// One possible longest palindromic subsequence is "bbbb".
+// Input: s = "bbbab"
+// Output: 4
+// Explanation: One possible longest palindromic subsequence is "bbbb".
 
 // Example 2:
-// Input:
-// "cbbd"
-// Output:
-// 2
-// One possible longest palindromic subsequence is "bb".
+// Input: s = "cbbd"
+// Output: 2
+// Explanation: One possible longest palindromic subsequence is "bb".
 
+// Constraints:
+// 1. 1 <= s.length <= 1000
+// 2. s consists only of lowercase English letters.
 
 // Dynamic Programming: bottom-up
 // dp[i][j]: the longest palindromic subsequence's length of substring(i, j)
 // dp[i][j] = dp[i+1][j-1] + 2, if s[i] == s[j]
 //          = max(dp[i+1][j], dp[i][j-1]), otherwise
 // Initialization: dp[i][i] = 1
+// Since using i + 1 each time, for the i loop, we need to start from the n - 1
+// And j starts from i + 1 because we want to calculate the inner substring first
 
-#include<vector>
-#include<string>
-using namespace std;
+#include <vector>
+#include <string>
+using std::vector;
+using std::string;
 
 class Solution {
 public:
@@ -39,7 +42,7 @@ public:
                 if (s[i] == s[j]) {
                     dp[i][j] = 2 + dp[i+1][j-1];
                 } else {
-                    dp[i][j] = max(dp[i+1][j], dp[i][j-1]);
+                    dp[i][j] = std::max(dp[i+1][j], dp[i][j-1]);
                 }
             }
         }

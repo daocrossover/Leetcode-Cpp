@@ -1,6 +1,6 @@
+// 54. Spiral Matrix
 // Description:
-// Given a matrix of m x n elements (m rows, n columns),
-// return all elements of the matrix in spiral order.
+// Given a matrix of m x n elements, return all elements of the matrix in spiral order.
 
 // Example 1:
 // Input:
@@ -20,20 +20,26 @@
 // ]
 // Output: [1,2,3,4,8,12,11,10,9,5,6,7]
 
+// Constraints:
+// 1. m == matrix.length
+// 2. n == matrix[i].length
+// 3. 1 <= m, n <= 10
+// 4. -100 <= matrix[i][j] <= 100
 
 // Layer-by-Layer Solution:
 // Suppose the current outer layer has top-left coordinates (r1, c1) and
 // bottom-right coordinates (r2, c2).
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
         vector<int> res;
-        if (matrix.size() == 0 || matrix[0].size() == 0)
+        if (matrix.size() == 0 || matrix[0].size() == 0) {
             return res;
+        }
         int r1 = 0, r2 = matrix.size() - 1;
         int c1 = 0, c2 = matrix[0].size() - 1;
         while (r1 <= r2 && c1 <= c2) {

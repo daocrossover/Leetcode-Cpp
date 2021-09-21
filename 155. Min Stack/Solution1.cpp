@@ -1,19 +1,23 @@
+// 155. Min Stack
 // Description:
 // Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
-// push(x) -- Push element x onto stack.
-// pop() -- Removes the element on top of the stack.
-// top() -- Get the top element.
-// getMin() -- Retrieve the minimum element in the stack.
- 
+
+// Implement the MinStack class:
+// MinStack() initializes the stack object.
+// void push(val) pushes the element val onto the stack.
+// void pop() removes the element on the top of the stack.
+// int top() gets the top element of the stack.
+// int getMin() retrieves the minimum element in the stack.
+
 // Example 1:
-// Input
+// Input:
 // ["MinStack","push","push","push","getMin","pop","top","getMin"]
 // [[],[-2],[0],[-3],[],[],[],[]]
 
-// Output
+// Output:
 // [null,null,null,null,-3,null,0,-2]
 
-// Explanation
+// Explanation:
 // MinStack minStack = new MinStack();
 // minStack.push(-2);
 // minStack.push(0);
@@ -24,17 +28,20 @@
 // minStack.getMin(); // return -2
  
 // Constraints:
-// Methods pop, top and getMin operations will always be called on non-empty stacks.
+// 1. -2^31 <= val <= 2^31 - 1
+// 2. Methods pop, top and getMin operations will always be called on non-empty stacks.
+// 3. At most 3 * 10^4 calls will be made to push, pop, top, and getMin.
 
 // Two stacks solution:
+// Maintain a min stack which top stores the current min in the stack
 
-#include<stack>
+#include <stack>
 using std::stack;
 
 class MinStack {
 private:
-    stack<int> dataStack;
-    stack<int> minStack;
+    stack<int> data_stack;
+    stack<int> min_stack;
 public:
     /** initialize your data structure here. */
     MinStack() {
@@ -42,25 +49,25 @@ public:
     }
     
     void push(int x) {
-        dataStack.push(x);
-        if (minStack.empty() || x <= minStack.top()) {
-            minStack.push(x);
+        data_stack.push(x);
+        if (min_stack.empty() || x <= min_stack.top()) {
+            min_stack.push(x);
         }
     }
     
     void pop() {
-        if (minStack.top() == dataStack.top()) {
-            minStack.pop();
+        if (min_stack.top() == data_stack.top()) {
+            min_stack.pop();
         }
-        dataStack.pop();
+        data_stack.pop();
     }
     
     int top() {
-        return dataStack.top();
+        return data_stack.top();
     }
     
     int getMin() {
-        return minStack.top();
+        return min_stack.top();
     }
 };
 

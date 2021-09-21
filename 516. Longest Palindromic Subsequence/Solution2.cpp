@@ -5,9 +5,10 @@
 // Initialization: dp[i][i] = 1
 // may Memory Limit Exceed in some cases
 
-#include<vector>
-#include<string>
-using namespace std;
+#include <vector>
+#include <string>
+using std::vector;
+using std::string;
 
 class Solution {
 public:
@@ -25,7 +26,7 @@ public:
         if (s[i] == s[j]) {
             dp[i][j] = helper(s, i + 1, j - 1, dp) + 2;
         } else {
-            dp[i][j] = max(helper(s, i + 1, j, dp), helper(s, i, j - 1, dp));
+            dp[i][j] = std::max(helper(s, i + 1, j, dp), helper(s, i, j - 1, dp));
         }
         return dp[i][j];
     }
