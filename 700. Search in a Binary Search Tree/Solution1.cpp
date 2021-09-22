@@ -1,6 +1,8 @@
+// 700. Search in a Binary Search Tree
 // Description:
-// Given the root node of a binary search tree (BST) and a value. You need to find the node in the BST that the node's value equals the given value.
-// Return the subtree rooted with that node. If such node doesn't exist, you should return NULL.
+// You are given the root of a binary search tree (BST) and an integer val.
+// Find the node in the BST that the node's value equals val and return the subtree rooted with that node. 
+// If such a node does not exist, return null.
 
 // For example, 
 // Given the tree:
@@ -18,6 +20,12 @@
 // In the example above, if we want to search the value 5, since there is no node with value 5, we should return NULL.
 // Note that an empty tree is represented by NULL, therefore you would see the expected output (serialized tree format) as [], not null.
 
+// Constraints:
+// 1. The number of nodes in the tree is in the range [1, 5000].
+// 2. 1 <= Node.val <= 10^7
+// 3. root is a binary search tree.
+// 4. 1 <= val <= 10^7
+
 // Definition for a binary tree node.
 struct TreeNode {
     int val;
@@ -27,6 +35,8 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
+
+// Iterative Solution:
 
 class Solution {
 public:
