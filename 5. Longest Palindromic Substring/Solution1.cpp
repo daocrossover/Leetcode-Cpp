@@ -1,15 +1,27 @@
+// 5. Longest Palindromic Substring
 // Description:
 // Given a string s, find the longest palindromic substring in s.
-// You may assume that the maximum length of s is 1000.
 
 // Example 1:
-// Input: "babad"
+// Input: s = "babad"
 // Output: "bab"
 // Note: "aba" is also a valid answer.
 
 // Example 2:
-// Input: "cbbd"
+// Input: s = "cbbd"
 // Output: "bb"
+
+// Example 3:
+// Input: s = "a"
+// Output: "a"
+
+// Example 4:
+// Input: s = "ac"
+// Output: "a"
+
+// Constraints:
+// 1 <= s.length <= 1000
+// s consist of only digits and English letters.
 
 // Dynamic Programming Solution:
 // dp[i][j] = 1 (S[i, j] is palindrome)
@@ -21,11 +33,30 @@
 // Space complexity: O(n^2)
 
 #include <string>
+#include <vector>
 using std::string;
+using std::vector;
 
 class Solution {
 public:
     string longestPalindrome(string s) {
+        if (s == "") return s;
+        int n = s.length();
+        int start = 0, max_len = 1;
+        vector<vector<int>> dp(n, vector<int>(n, 0));
+        for (int i = n - 1; i >= 0; --i) {
+            for (int j = i; j < n; ++j) {
+                dp[i][j] = s[i] == s[j] && (j - i <= 2 || dp[i+1][j-1]);
+                if (dp[i][j] && max_len < j - i + 1) {
+                    max_len = j - i + 1;
+                    start = i;
+                }
+            }
+        }
+        return s.substr(start, max_len);
+    }
+
+    string longestPalindrome1(string s) {
         if (s == "") return s;
         int n = s.length();
         int dp[n][n];

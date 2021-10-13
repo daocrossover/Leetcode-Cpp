@@ -1,4 +1,5 @@
 // Two Pointers Solution:
+// Sum water amount of each bin (width = 1).
 // As long as right_max[i] > left_max[i], the water trapped depends upon the left_max,
 // and similar is the case when left_max[i] > right_max[i]
 // If there is a larger bar at one end (say right),
@@ -9,8 +10,8 @@
 // Time Complexity: O(n)
 // Space Complexity: O(1)
 
-#include<vector>
-using namespace std;
+#include <vector>
+using std::vector;
 
 class Solution {
 public:

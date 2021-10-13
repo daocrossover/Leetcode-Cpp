@@ -2,7 +2,7 @@
 // Time Complexity: O(n)
 // Space Complexity: O(n)
 
-#include<vector>
+#include <vector>
 using std::vector;
 using std::max;
 using std::min;
