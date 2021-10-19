@@ -63,7 +63,10 @@ public:
             // maintain a monotonic increasing queue
             // If sum[i] <= sum[dq.back()] and moreover we already know that i > dq.back()
             // compared with sum[dq.back()], sum[i] can help us make the subarray length shorter and sum bigger
-            // So no need to keep d.back() in our deque.
+            // sum[dq.back], sum[i], ... , sum[future id]
+            // If sum[future id] - sum[dq.back()] >= k && sum[d.back()] >= sum[i]
+            // sum[future id] - sum[i] >= k too
+            // So no need to keep dq.back() in our deque.
             while (!dq.empty() && sum[i] <= sum[dq.back()]) {
                 dq.pop_back();
             }

@@ -1,3 +1,4 @@
+// 2. Track travel days
 // Dynamic Programming
 // Time Complexity: O(n), where n is the number of travel days.
 // Space Complexity: O(38). Stricter, it's a sum of duration for all pass types (1 + 7 + 30 in our case).

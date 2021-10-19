@@ -21,7 +21,7 @@ public:
         }
         right_max[n-1] = height[n-1];
         // Find maximum height of bar from the right end upto index i in the array right_max
-        for (int i = n-2; i >= 0; --i) {
+        for (int i = n - 2; i >= 0; --i) {
             right_max[i] = max(height[i], right_max[i+1]);
         }
         // add min(left_max[i], right_max[i]) - height[i] to res

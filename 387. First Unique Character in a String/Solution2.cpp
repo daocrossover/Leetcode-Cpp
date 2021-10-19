@@ -1,4 +1,5 @@
-// Solution 2: Lookup table since s consists of only lowercase English letters.
+// Solution 2: Lookup table 
+// since s consists of only lowercase English letters.
 
 #include <string>
 using std::string;

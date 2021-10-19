@@ -57,7 +57,7 @@ class Solution {
 public:
     int numDecodings(string s) {
         int n = s.length();
-        if (n == 0 || (n > 0 && s[0] == 0)) {
+        if (n == 0 || (n > 0 && s[0] == '0')) {
             return 0;
         }
         vector<int> dp(n + 1, 0);

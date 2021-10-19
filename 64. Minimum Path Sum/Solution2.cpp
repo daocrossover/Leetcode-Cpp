@@ -1,11 +1,12 @@
 // 1-D Dynamic Programming Solution:
 // Maintaining a column is enough
 // dp[i] = min(dp[i-1], dp[i]) + grid[i][j]
+// dp[i] will be the top row and dp[i-1] will be the left column 
 // Time Complexity: O(mn)
 // Space Complexity: O(m)
 
-#include<vector>
-#include<algorithm>
+#include <vector>
+#include <algorithm>
 using std::vector;
 using std::min;
 
