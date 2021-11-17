@@ -51,7 +51,7 @@ public:
         // deque stores the possible values of the start pointer. 
         // Unlike the sliding window, values of the start variable will not necessarily be contiguous.
         std::deque<int> dq;
-        // Basic idea, for array starting at every nums[i], find the shortest one with sum at leat K.
+        // Basic idea, for array starting at every nums[i], find the shortest one with sum at least K.
         for (int i = 0; i <= n; ++i) {
             // keep checking if the front element of the queue satisfying the requirement
             // if it is, we can pop front, because there won't be any better solution in the future compared to (current - front), 
@@ -64,7 +64,7 @@ public:
             // If sum[i] <= sum[dq.back()] and moreover we already know that i > dq.back()
             // compared with sum[dq.back()], sum[i] can help us make the subarray length shorter and sum bigger
             // sum[dq.back], sum[i], ... , sum[future id]
-            // If sum[future id] - sum[dq.back()] >= k && sum[d.back()] >= sum[i]
+            // If sum[future id] - sum[dq.back()] >= k && sum[dq.back()] >= sum[i]
             // sum[future id] - sum[i] >= k too
             // So no need to keep dq.back() in our deque.
             while (!dq.empty() && sum[i] <= sum[dq.back()]) {
