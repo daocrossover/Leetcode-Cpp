@@ -1,9 +1,10 @@
 // using deque
 // time complexity: O(n), space complexity: O(k)
 
-#include<vector>
-#include<deque>
-using namespace std;
+#include <vector>
+#include <deque>
+using std::vector;
+using std::deque;
 
 class Solution {
 public:

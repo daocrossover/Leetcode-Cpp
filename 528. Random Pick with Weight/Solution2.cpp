@@ -5,19 +5,19 @@ using std::vector;
 
 class Solution {
 private:
-    vector<int> sum;
+    vector<int> prefix_sum;
 
 public:
     Solution(vector<int>& w) {
         int s = 0;
         for (int weight: w) {
             s += weight;
-            sum.push_back(s);
+            prefix_sum.push_back(s);
         }
     }
     
     int pickIndex() {
-        int x = rand() % sum.back();
-        return upper_bound(sum.begin(), sum.end(), x) - sum.begin();
+        int x = rand() % prefix_sum.back();
+        return upper_bound(prefix_sum.begin(), prefix_sum.end(), x) - prefix_sum.begin();
     }
 };
